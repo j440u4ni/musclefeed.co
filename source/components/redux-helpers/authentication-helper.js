@@ -6,7 +6,7 @@ const hostname = 'http://10.188.37.107';
 
 export function authenticateService(email, password, admin) {
     const authenticationQuery = retrieveAccount(admin);
-    return fetch(hostname+':3000/v1/graphql-account', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', }, body: JSON.stringify({ query: authenticationQuery, variables: { email, password } }) })
+    return fetch(hostname+':3000/v1/graphql-first-instance/BtL7NQwOt0R7psYw1Fyx', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', }, body: JSON.stringify({ query: authenticationQuery, variables: { email, password } }) })
         .then((response) => { return response.json(); })
         .then((data) => { return data; })
 }

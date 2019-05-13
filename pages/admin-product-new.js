@@ -18,16 +18,19 @@ const { Content, Footer } = Layout;
 
 class SAdminProductNew extends Component {
   constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false };
-    this.onCategory = this.onCategory.bind(this);
-    this.onPerfume = this.onPerfume.bind(this);
-    this.onWeight = this.onWeight.bind(this); 
+    this.onCategory = this.onCategory.bind(this); this.onPerfume = this.onPerfume.bind(this); this.onWeight = this.onWeight.bind(this); 
+    this.onCloseCategory = this.onCloseCategory.bind(this);
   }
   componentDidMount() { if(this.props && typeof this.props.user === "string") { this.setState({ user : JSON.parse(this.props.user) }); } }
   componentDidUpdate(previous) { if(previous.user !== this.props.user) { this.setState({ user : JSON.parse(this.props.user) }); } }
 
   onCategory() { this.setState({ categoryVisible: !this.state.categoryVisible }); }
   onPerfume() { this.setState({ perfumeVisible: !this.state.perfumeVisible }); }
-  onWeight() { this.setState({ weightVisible: !this.state.weightVisible }); }
+  onWeight() { this.setState({ weightVisible:!this.state.weightVisible }); }
+
+  onCloseCategory() { this.setState({ categoryVisible: false }); this.forceUpdate(); }
+  onClosePerfume() { this.setState({ perfumeVisible: false }); this.forceUpdate(); }
+  onCloseWeight() { this.setState({ weightVisible: false }); this.forceUpdate(); }
 
   render() {
     return (
@@ -40,9 +43,9 @@ class SAdminProductNew extends Component {
             <Content style={{ backgroundColor: '#ffffff' }} className="product-new-global">
               <div className="d-flex flex-row justify-content-center row-product-specifity top-specifity mt-2">
                 <Button.Group>
-                  <Button type="primary" onClick={this.onCategory}><Icon type="tags" />&nbsp;<span className="button-text">Catégorie</span></Button>
-                  <Button type="primary" onClick={this.onPerfume}><Icon type="hourglass" />&nbsp;<span className="button-text">Parfums</span></Button>
-                  <Button type="primary" onClick={this.onWeight}><Icon type="hdd" />&nbsp;<span className="button-text">Poids</span></Button>
+                  <Button type="primary" onClick={this.onCategory} onClose={this.onCloseCategory}><Icon type="tags" />&nbsp;<span className="button-text">Catégorie</span></Button>
+                  <Button type="primary" onClick={this.onPerfume} onClose={this.onClosePerfume}><Icon type="hourglass" />&nbsp;<span className="button-text">Parfums</span></Button>
+                  <Button type="primary" onClick={this.onWeight} onClose={this.onCloseWeight}><Icon type="hdd" />&nbsp;<span className="button-text">Poids</span></Button>
                 </Button.Group>
               </div>
             </Content>

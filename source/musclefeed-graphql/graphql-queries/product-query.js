@@ -1,0 +1,18 @@
+import { GraphQLString, GraphQLObjectType, GraphQLInt, GraphQLList } from 'graphql';
+
+import { CategoryType } from '../graphql-types/category-type';
+import { PerfumeType } from '../graphql-types/perfume-type';
+import { WeightType } from '../graphql-types/weight-type';
+
+import { categoryModel } from '../../musclefeed-models/database';
+import { perfumeModel } from '../../musclefeed-models/database';
+import { weightModel } from '../../musclefeed-models/database';
+
+const ProductQuery = new GraphQLObjectType({ name: 'ProductQuery',
+    fields: {
+        fetchAllCategories: { type: new GraphQLList(CategoryType), resolve(source, args, context, info) { return categoryModel.findAll(); } },
+        fetchAllPerfumes: { type: new GraphQLList(PerfumeType), resolve(source, args, context, info) { return perfumeModel.findAll(); } },
+        fetchAllWeights: { type: new GraphQLList(WeightType), resolve(source, args, context, info) { return weightModel.findAll(); } },
+    }
+});
+export { ProductQuery };

@@ -17,7 +17,7 @@ class SAdminAccount extends Component {
         this.onIntentLogin = this.onIntentLogin.bind(this); this.onResetButton = this.onResetButton.bind(this);
     }
 
-    componentDidMount() { library.add(far, faPaperPlane); this.forceUpdate(); }
+    componentDidMount() { library.add(far, faPaperPlane); }
 
     onChangeEmail(event) { this.setState({ email: event.target.value }); }
     onChangePassword(event) { this.setState({ password: event.target.value }); }

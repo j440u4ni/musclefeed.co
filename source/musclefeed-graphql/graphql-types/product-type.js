@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLNonNull } from 'graphql';
 
-const Product = new GraphQLObjectType({ name: 'Product Type', description: 'A Product GraphQL representation.',
+const Product = new GraphQLObjectType({ name: 'ProductType', description: 'A Product GraphQL representation.',
     fields: () => {
     return {
             id: { type: new GraphQLNonNull(GraphQLInt), resolve(person) { return person.id; } },

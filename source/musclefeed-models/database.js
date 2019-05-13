@@ -4,6 +4,7 @@ import { makePersonModel } from './person.model';
 import { makeWeightModel } from './weight.model';
 import { makePerfumeModel } from './perfume.model';
 import { makeProductModel } from './product.model';
+import { makeCategoryModel } from './category.model';
 
 const databaseConnection = new Sequelize(
     'musclefeed-local-node', 
@@ -16,5 +17,6 @@ const personModel = makePersonModel(databaseConnection);
 const weightModel = makeWeightModel(databaseConnection);
 const perfumeModel = makePerfumeModel(databaseConnection);
 const productModel = makeProductModel(databaseConnection);
+const categoryModel = makeCategoryModel(databaseConnection);
 
-export { databaseConnection, personModel, weightModel, perfumeModel, productModel };
+export { databaseConnection, personModel, weightModel, perfumeModel, productModel, categoryModel };

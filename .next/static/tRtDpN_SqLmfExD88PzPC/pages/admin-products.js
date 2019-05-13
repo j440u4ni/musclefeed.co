@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["a8ec"],{BX3z:function(n,o){},e9Nx:function(n,o,w){(window.__NEXT_P=window.__NEXT_P||[]).push(["/admin-products",function(){var n=w("BX3z");return{page:n.default||n}}])}},[["e9Nx","5d41"]]]);

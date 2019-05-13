@@ -1,0 +1,27 @@
+@import '~antd/dist/antd.css';
+@import '~bootstrap/scss/bootstrap';
+@import './fonts/Brandon\ Grotesque\ 12/style.css';
+
+.admin-login-box { position: relative; top: 35vh; }
+.input-login { font-weight: bold; }
+.remember-text { font-size: 12px; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; }
+.admin-login-button { position: relative; left: -40px; }
+.admin-login-text { position: relative; top: 5px; font-size: 13px; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; }
+.remember-switch { position: relative; left: -15px; top: 10px; }
+.font-icon-admin { font-size: 30px; }
+.error-text-login { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; position: relative; top: 2px; font-size: 12px; }
+.notification-warning-toast { width: 300px; }
+
+.application-admin-logo { width: 100%; height: 30px; position: relative; }
+.application-admin-logo-img { width: 120px; height: 40px; z-index: 2; }
+.application-admin-logo-img-v2 { width: 36px; height: 40px; z-index: 2; }
+.application-admin-nav-link-text { font-family: 'Brandon Grotesque Medium', Arial, Helvetica, sans-serif; }
+.application-admin-header { box-shadow: 0 0 30px #f3f1f1; border-bottom: solid 1px #e8e8e8; width: calc(100vw - 200px); margin-left: 200px; z-index: 2; }
+.application-admin-header .sub-admin-header { height: 36px; }
+.admin-information-first { font-family: 'Brandon Grotesque Light', Arial, Helvetica, sans-serif; font-size: 12px; color: #707070; }
+.button-icon-header { position: relative; top: -3px; }
+
+.top-specifity { width: calc(100vw - 200px); margin-left: 200px; z-index: 2; height: 34px; }
+.drawer-product-specifity { width: 300px; }
+.product-specifity-input { font-family: 'Brandon Grotesque Light', Arial, Helvetica, sans-serif; font-size: 12px; color: #707070; }
+.button-text { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff; }

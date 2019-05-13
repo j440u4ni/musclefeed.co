@@ -1,0 +1,35 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/_app.js": 0,
+      "multi private-next-pages/admin-account.js": 1,
+      "multi private-next-pages/create-account.js": 2,
+      "multi private-next-pages/index.js": 3,
+      "multi next/dist/pages/_error": 4,
+      "multi next/dist/pages/_document": 5,
+      "multi private-next-pages/admin-dashboard.js": 6,
+      "multi private-next-pages/admin-orders.js": 7,
+      "multi private-next-pages/admin-payments.js": 8,
+      "multi private-next-pages/admin-products.js": 9,
+      "multi private-next-pages/admin-product-new.js": 10
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10
+    }
+  },
+  "chunks": {
+    "byName": {},
+    "bySource": {},
+    "usedIds": []
+  }
+}

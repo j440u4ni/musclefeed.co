@@ -2,7 +2,7 @@ import cookie from 'js-cookie';
 import Router from 'next/router';
 import { retrieveAccount } from '../apollo-client/account-apollo/authentication-query';
 
-const hostname = 'http://10.188.37.107';
+const hostname = 'http://10.188.109.85';
 
 export function authenticateService(email, password, admin) {
     const authenticationQuery = retrieveAccount(admin);

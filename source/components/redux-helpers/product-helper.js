@@ -2,7 +2,7 @@ import cookie from 'js-cookie';
 import Router from 'next/router';
 import { addProductCategoryQuery, addProductPerfumeQuery, addProductWeightQuery } from '../apollo-client/account-apollo/product-query';
 
-const hostname = 'http://10.188.37.107';
+const hostname = 'http://10.188.109.85';
 
 export function addProductCategoryService(name, description) {
     return fetch(hostname+':3000/v1/graphql-second-instance/0lqY5JycFu4BwCDv7vsM', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', }, body: JSON.stringify({ query: addProductCategoryQuery, variables: { name, description } }) })

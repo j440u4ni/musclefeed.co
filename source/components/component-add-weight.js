@@ -25,12 +25,12 @@ class SAddProductWeight extends Component {
     render() {
         return(
         <React.Fragment>
-            <Drawer width={300} placement="right" closable={false} onClose={this.props.onClose} visible={this.state.visible} className="drawer-product-specifity">
+            <Drawer width={300} placement="right" closable={false} onClose={this.onClose} visible={this.state.visible} className="drawer-product-specifity">
                 <div className="row mt-5">
                     <div className="col-12"><Input prefix={<Icon type="tags" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nom du poids." className="product-specifity-input" onChange={this.onName} /></div>
                     <div className="col-12"><Input prefix={<Icon type="file-text" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Valeur du poids." className="product-specifity-input mt-1" onChange={this.onValue} /></div>
                     <div className="col-12 p-0">
-                        <div className="d-flex flex-row justify-content-space-between m-0 mt-5">
+                        <div className="d-flex flex-row justify-content-space-between m-0 mt-2">
                             <div className="col-6"><Button type="danger" className="button-drawer-fill" onClick={this.onClose}><span className="remember-text"><FontAwesomeIcon icon={faEject} />&nbsp;Annuler</span></Button></div>
                             <div className="col-6"><Button type="primary" className="button-drawer-fill" onClick={this.onConfirm}><span className="remember-text"><FontAwesomeIcon icon={faPaperPlane} />&nbsp;Confirmer</span></Button></div>
                         </div>

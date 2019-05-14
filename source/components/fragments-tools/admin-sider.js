@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import Link from 'next/link';
 
-import  logo from '../../../static/resources/images/logo-fredokav2@2x.png';
-import  logoV2 from '../../../static/resources/images/logo-fredokav3@2x.png';
+import  logo from '../../../static/resources/images/logo-fredoka-v4@2x.png';
 import '../../../static/resources/admin-account.scss';
 
 const { Sider } = Layout;

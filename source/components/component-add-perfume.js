@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { far, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { fas, faEject } from '@fortawesome/free-solid-svg-icons';
 
-import { addProductPerfume } from './redux-actions/product-action';
+import { addProductPerfume, fetchAllProductPerfumes } from './redux-actions/product-action';
 
 class SAddProductPerfume extends Component {
     constructor(props) { super(props); this.state = { visible: true, name: '', description: '' }; 
@@ -19,13 +19,16 @@ class SAddProductPerfume extends Component {
 
     onName(event) { this.setState({ name: event.target.value }); }
     onDescription(event) { this.setState({ description: event.target.value }); }
-    onClose(all = true) { this.setState({ visible: false }); if(all) { this.props.onClose(); console.log('hi'); } }
-    onConfirm() { const { dispatch } = this.props; dispatch(addProductPerfume(this.state.name, this.state.description, this.onClose)); }
+    onClose(all = false) { this.setState({ visible: false }); this.props.onClose(); }
+    onConfirm() { const { dispatch } = this.props; 
+            dispatch(addProductPerfume(this.state.name, this.state.description, this.onClose)); 
+            dispatch(fetchAllProductPerfumes());
+    }
 
     render() {
         return(
         <React.Fragment>
-            <Drawer width={300} placement="right" closable={false} onClose={this.onClose} visible={this.state.visible} className="drawer-product-specifity">
+            <Drawer width={300} placement="right" closable={false} onClose={this.props.onClose} visible={this.state.visible} className="drawer-product-specifity">
                 <div className="row mt-5">
                     <div className="col-12"><Input prefix={<Icon type="tags" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nom du parfum." className="product-specifity-input" onChange={this.onName} /></div>
                     <div className="col-12"><Input prefix={<Icon type="file-text" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Description du parfum." className="product-specifity-input mt-1" onChange={this.onDescription} /></div>

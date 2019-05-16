@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Layout, Icon, Button } from 'antd';
+import { Layout, Icon, Button, Empty } from 'antd';
 import { Card, Elevation } from '@blueprintjs/core';
 
 import { GuestHeader } from '../source/components/component-header-guest';
@@ -13,25 +13,38 @@ import { SAddProductPerfume } from '../source/components/component-add-perfume';
 import { SAddProductWeight } from '../source/components/component-add-weight';
 import { SAddProductCategory } from '../source/components/component-add-category';
 
+import { fetchAllProductCategories, fetchAllProductWeights, fetchAllProductPerfumes } from '../source/components/redux-actions/product-action';
+
 import '../static/resources/admin-account.scss';
 
 const { Content, Footer } = Layout;
 
 class SAdminProductNew extends Component {
-  constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false };
+  constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false, categories: null, perfumes: null, weights: null };
     this.onCategory = this.onCategory.bind(this); this.onPerfume = this.onPerfume.bind(this); this.onWeight = this.onWeight.bind(this); 
-    this.onCloseCategory = this.onCloseCategory.bind(this); this.onCloseWeight = this.onCloseWeight.bind(this);
+    this.onCloseCategory = this.onCloseCategory.bind(this); this.onCloseWeight = this.onCloseWeight.bind(this); this.onClosePerfume = this.onClosePerfume.bind(this);
   }
-  componentDidMount() { if(this.props && typeof this.props.user === "string") { this.setState({ user : JSON.parse(this.props.user) }); } }
-  componentDidUpdate(previous) { if(previous.user !== this.props.user) { this.setState({ user : JSON.parse(this.props.user) }); } }
+  componentDidMount() { const { dispatch } = this.props;
+    dispatch(fetchAllProductCategories()); dispatch(fetchAllProductPerfumes()); dispatch(fetchAllProductWeights());
+    if(this.props.user && typeof this.props.user === "string") { this.setState({ user : JSON.parse(this.props.user) }); }
+    if(this.props.weights && typeof this.props.weights === "string") { this.setState({ weights : this.props.weights }); }
+    if(this.props.perfumes && typeof this.props.perfumes === "string") { this.setState({ perfumes : this.props.perfumes }); }
+    if(this.props.categories && typeof this.props.categories === "string") { this.setState({ categories : this.props.categories }); }
+  }
+  componentDidUpdate(previous) { 
+    if(previous.user !== this.props.user) { this.setState({ user : JSON.parse(this.props.user) }); } 
+    if(previous.categories !== this.props.categories) { this.setState({ categories : this.props.categories }); } 
+    if(previous.weights !== this.props.weights) { this.setState({ weights : this.props.weights }); } 
+    if(previous.perfumes !== this.props.perfumes) { this.setState({ perfumes : this.props.perfumes }); } 
+  }
 
   onCategory() { this.setState({ categoryVisible: true }); }
   onPerfume() { this.setState({ perfumeVisible: true }); }
   onWeight() { this.setState({ weightVisible: true }); }
 
-  onCloseCategory() { this.setState({ categoryVisible: false }); }
-  onClosePerfume() { this.setState({ perfumeVisible: false }); }
-  onCloseWeight() { this.setState({ weightVisible: false }); }
+  onCloseCategory() { this.setState({ categoryVisible: false }); this.forceUpdate(); }
+  onClosePerfume() { this.setState({ perfumeVisible: false }); this.forceUpdate(); }
+  onCloseWeight() { this.setState({ weightVisible: false }); this.forceUpdate(); }
 
   render() {
     return (
@@ -50,15 +63,21 @@ class SAdminProductNew extends Component {
                 </Button.Group>
               </div>
               <div className="d-flex flex-row justify-content-center row-product-specifities rows-two mt-2">
-                <div className="col-3">
-                  <Card interactive={true} elevation={Elevation.TWO} className="bp3-dark">
+                <div className="col-2">
+                  <Card interactive={true} elevation={Elevation.TWO} className="bp3-dark p-2">
+                    <h5 className="box-title-white">Catégories</h5>
+                    { this.state.categories && typeof this.state.categories === "string" && this.state.categories.length === 2 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<span className="box-notfound-description">Aucune catégorie</span>} className="box-notfound-error mt-2" /> : <span>0</span> }
                   </Card>
-                  <Card interactive={true} elevation={Elevation.TWO} className="mt-2 bp3-dark">
+                  <Card interactive={true} elevation={Elevation.TWO} className="mt-2 bp3-dark p-2">
+                    <h5 className="box-title-white">Parfums</h5>
+                    { this.state.perfumes && typeof this.state.perfumes === "string" && this.state.perfumes.length === 2 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<span className="box-notfound-description">Aucune parfum</span>} className="box-notfound-error mt-2" /> : <span>0</span> }
                   </Card>
-                  <Card interactive={true} elevation={Elevation.TWO} className="mt-2 bp3-dark">
+                  <Card interactive={true} elevation={Elevation.TWO} className="mt-2 bp3-dark p-2">
+                    <h5 className="box-title-white">Poids & Quantités.</h5>
+                    { this.state.weights && typeof this.state.weights === "string" && this.state.weights.length === 2 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<span className="box-notfound-description">Aucune poids</span>} className="box-notfound-error mt-2" /> : <span>0</span> }
                   </Card>
                 </div>
-                <div className="col-9">
+                <div className="col-10">
                   <Card interactive={true} elevation={Elevation.TWO} className=" bp3-dark">
                   </Card>
                 </div>
@@ -66,14 +85,15 @@ class SAdminProductNew extends Component {
             </Content>
           </Layout>
           { this.state.categoryVisible && <SAddProductCategory onClose={this.onCloseCategory} /> }
-          { this.state.weightVisible && <SAddProductWeight onClose={this.onClosePerfume} /> }
-          { this.state.perfumeVisible && <SAddProductPerfume onClose={this.onCloseWeight} /> }
+          { this.state.perfumeVisible && <SAddProductPerfume onClose={this.onClosePerfume} /> }
+          { this.state.weightVisible && <SAddProductWeight onClose={this.onCloseWeight} /> }
         </Layout>
       </React.Fragment>
     )
   }
 }
 
-function mapStateToProps(state)  { const { user, logged } = state.authenticationReducer; return { user, logged }; }
+function mapStateToProps(state)  { const { user, logged } = state.authenticationReducer; const { weights, perfumes, categories } = state.adminReducer;
+                                   return { user, logged, weights, perfumes, categories }; }
 const connectReduxAdminProductNew = connect(mapStateToProps)(SAdminProductNew);
 export default connectReduxAdminProductNew;

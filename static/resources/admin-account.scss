@@ -28,3 +28,6 @@
 .button-text { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff; }
 .button-drawer-fill { width: 100%; }
 .rows-two { width: calc(100vw - 200px); margin-left: 200px; height: calc(100vh - 100px); z-index: 2; background: #ffffff; }
+
+.box-title-white, .box-notfound-description { color: #ffffff; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
+.box-notfound-error {}

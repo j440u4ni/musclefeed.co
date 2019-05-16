@@ -1,6 +1,7 @@
 import cookie from 'js-cookie';
 import Router from 'next/router';
 import { retrieveAccount } from '../apollo-client/account-apollo/authentication-query';
+import fetch from 'node-fetch';
 
 const hostname = 'http://10.188.37.107';
 

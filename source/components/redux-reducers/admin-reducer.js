@@ -1,12 +1,12 @@
 import cookie from 'js-cookie';
 import { productConstants } from '../redux-constants/product-constant';
 
-let categories = cookie.get('product-categories');
-let perfumes = cookie.get('product-perfumes');
-let weights = cookie.get('product-weights');
+let categories = cookie.get('product-categories') !== "[]" ? cookie.get('product-categories') : null;
+let perfumes = cookie.get('product-perfumes') !== "[]" ? cookie.get('product-perfumes') : null;
+let weights = cookie.get('product-weights') !== "[]" ? cookie.get('product-weights') : null;
 
-const initialState = (categories !== undefined && typeof categories === 'string') && (weights !== undefined && typeof weights === 'string') && (perfumes !== undefined && typeof perfumes === 'string') 
-? { categories: cookie.get('product-categories'), weights: cookie.get('product-weights'), perfumes: cookie.get('product-perfumes') } 
+const initialState = (categories !== undefined && typeof categories !== 'undefined') && (weights !== undefined && typeof weights !== 'undefined') && (perfumes !== undefined && typeof perfumes !== 'undefined') 
+? { categories: categories, weights: weights, perfumes: perfumes } 
 : { categories: null, weights: null, perfumes: null };
 
 export function adminReducer(state = initialState, action) {

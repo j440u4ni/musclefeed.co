@@ -29,5 +29,7 @@
 .button-drawer-fill { width: 100%; }
 .rows-two { width: calc(100vw - 200px); margin-left: 200px; height: calc(100vh - 100px); z-index: 2; background: #ffffff; }
 
-.box-title-white, .box-notfound-description { color: #ffffff; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
+.box-title-white, .box-notfound-description, .checkbox-title { color: #ffffff; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
+.checkbox-title { font-family: 'Brandon Grotesque Medium', Arial, Helvetica, sans-serif; }
+.box-notfound-error { position: relative; left: 0%; }
 .box-notfound-error {}

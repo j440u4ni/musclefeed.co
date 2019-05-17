@@ -3063,6 +3063,11 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
+decorate-component-with-props@^1.0.2:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/decorate-component-with-props/-/decorate-component-with-props-1.1.0.tgz#b496c814c6a2aba0cf2ad26e44cbedb8ead42f15"
+  integrity sha512-tTYQojixN64yK3/WBODMfvss/zbmyUx9HQXhzSxZiSiofeekVeRyyuToy9BCiTMrVEIKWxTcla2t3y5qdaUF7Q==
+
 deep-diff@^0.3.5:
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-0.3.8.tgz#c01de63efb0eec9798801d40c7e0dae25b582c84"
@@ -3225,7 +3230,25 @@ dottie@^2.0.0:
   resolved "https://registry.yarnpkg.com/dottie/-/dottie-2.0.1.tgz#697ad9d72004db7574d21f892466a3c285893659"
   integrity sha512-ch5OQgvGDK2u8pSZeSYAQaV/lczImd7pMJ7BcEPXmnFVjy4yJIzP6CsODJUTH8mg1tyH1Z2abOiuJO3DjZ/GBw==
 
-draft-js@^0.10.0, draft-js@~0.10.0:
+draft-js-buttons@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/draft-js-buttons/-/draft-js-buttons-2.0.1.tgz#8e88c4d6c816c3b7c8ae08a3daa799afa94e14be"
+  integrity sha512-d5FKPGpRe0vmFrCuglZkLloErGVsPTefeBcHiqvw03aLdPlnM4wO0Y5R43TPI+oEoZxplEQuycBvGmUmO8dhbQ==
+  dependencies:
+    union-class-names "^1.0.0"
+
+draft-js-plugins-editor@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/draft-js-plugins-editor/-/draft-js-plugins-editor-2.1.1.tgz#7c9aedd696737c6ddf45d47c978bd764ef33f688"
+  integrity sha512-fKGe71irNvFHJ5L/lUrh+3vPkBNq0de6x+cgiZUJ9zQERc5KPBtGXIFiarLFVHyrRTCPq+K6xmgfFSAERaFHPw==
+  dependencies:
+    decorate-component-with-props "^1.0.2"
+    find-with-regex "^1.1.3"
+    immutable "~3.7.4"
+    prop-types "^15.5.8"
+    union-class-names "^1.0.0"
+
+draft-js@^0.10.0, draft-js@^0.10.5, draft-js@~0.10.0:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.10.5.tgz#bfa9beb018fe0533dbb08d6675c371a6b08fa742"
   integrity sha512-LE6jSCV9nkPhfVX2ggcRLA4FKs6zWq9ceuO/88BpXdNCS7mjRTgs0NsV6piUCJX9YxMsB9An33wnkMmU2sD2Zg==
@@ -3670,6 +3693,11 @@ find-up@^1.0.0:
   dependencies:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
+
+find-with-regex@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/find-with-regex/-/find-with-regex-1.1.3.tgz#d6c6f2debee898d36b6a77e05709b13dd5dc8a26"
+  integrity sha512-zkEVQ1H3PIQL/19ADKt1lCQU4QGM3OneiderUcFgn5EgTm/TnoUh7HxPAwP8w/vXxWSLC6KtpbDQpypJ5+majw==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -8134,6 +8162,11 @@ unicode-property-aliases-ecmascript@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-1.0.5.tgz#a9cc6cc7ce63a0a3023fc99e341b94431d405a57"
   integrity sha512-L5RAqCfXqAwR3RriF8pM0lU0w4Ryf/GgzONwi6KnL1taJQa7x1TCxdJnILX59WIGOwR57IVxn7Nej0fz1Ny6fw==
+
+union-class-names@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/union-class-names/-/union-class-names-1.0.0.tgz#9259608adacc39094a2b0cfe16c78e6200617847"
+  integrity sha1-kllgitrMOQlKKwz+FseOYgBheEc=
 
 union-value@^1.0.0:
   version "1.0.0"

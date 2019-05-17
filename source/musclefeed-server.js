@@ -13,6 +13,7 @@ import { databaseConnection, personModel } from './musclefeed-models/database';
 import { accountSchema, productSchema } from './musclefeed-graphql/musclefeed-schema';
 import { saltSync, bcrypt } from './musclefeed-configuration';
 import { adminIsLogged, adminIsNotLogged } from './protected.middleware';
+import { uploadProductImage } from './musclefeed-controllers/product-functions/product-function';
 
 const render = next({ ENV });
 const handle = render.getRequestHandler();
@@ -32,7 +33,7 @@ render.prepare().then(() => {
 
     application.get('*', (request, response, next) => { return handle(request, response, next); });
 
-    application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
+    application.listen(PORT, '10.188.109.85', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
 databaseConnection.sync({ force: true }).then(() => { 

@@ -31,14 +31,16 @@
       "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/resources/fonts/Brandon Grotesque 12/style.css 0": 1,
       "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/resources/admin-account.scss 0": 2,
       "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/resources/main-application.scss 0": 3,
-      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!node_modules/@blueprintjs/core/lib/css/blueprint.css 0": 4
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!node_modules/@blueprintjs/core/lib/css/blueprint.css 0": 4,
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css 0": 5
     },
     "usedIds": {
       "0": 0,
       "1": 1,
       "2": 2,
       "3": 3,
-      "4": 4
+      "4": 4,
+      "5": 5
     }
   },
   "chunks": {

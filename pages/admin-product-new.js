@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Layout, Icon, Button, Empty, Radio } from 'antd';
-import { Card, Elevation, Checkbox, InputGroup } from '@blueprintjs/core';
+import { Card, Elevation, Checkbox, InputGroup, Button as BPButton, ButtonGroup } from '@blueprintjs/core';
+import { Editor, EditorState, RichUtils } from 'draft-js';
 
 import { GuestHeader } from '../source/components/component-header-guest';
 import { AdminNavbar } from '../source/components/component-navbar-admin';
@@ -16,20 +17,24 @@ import { SAddProductCategory } from '../source/components/component-add-category
 import { fetchAllProductCategories, fetchAllProductWeights, fetchAllProductPerfumes } from '../source/components/redux-actions/product-action';
 
 import '../static/resources/admin-account.scss';
+import UnderlineButton from 'draft-js-buttons/lib/components/UnderlineButton';
 
 const { Content, Footer } = Layout;
 const RadioGroup = Radio.Group;
-const CheckboxGroup = Checkbox.Group;
 
 class SAdminProductNew extends Component {
-  constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false, selectedPrices: [],
-                                                    categories: null, perfumes: null, weights: null, selectedCategory: 1, selectedPerfumes: [], selectedWeights: [] };
+  constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false, selectedPrices: [], uploading: false,
+                                                    categories: null, perfumes: null, weights: null, selectedCategory: 1, selectedPerfumes: [], selectedWeights: [],
+                                                    productImage: '', productTitle: '', productProvider: '', productQuantity: 0, productDescription: '', editorState: EditorState.createEmpty(),
+                                                    editorShow: false
+                                                  };
     this.onCategory = this.onCategory.bind(this); this.onPerfume = this.onPerfume.bind(this); this.onWeight = this.onWeight.bind(this); 
     this.onCloseCategory = this.onCloseCategory.bind(this); this.onCloseWeight = this.onCloseWeight.bind(this); this.onClosePerfume = this.onClosePerfume.bind(this);
-    this.onSelectCategory = this.onSelectCategory.bind(this); this.onSelectPerfume = this.onSelectPerfume.bind(this); this.onInputPrice = this.onInputPrice.bind(this);
-    this.onSelectWeight = this.onSelectWeight.bind(this);
+    this.onSelectCategory = this.onSelectCategory.bind(this); this.onSelectPerfume = this.onSelectPerfume.bind(this); this.onInputPrice = this.onInputPrice.bind(this); this.onProductDescriptionStrikeThrough = this.onProductDescriptionStrikeThrough.bind(this);
+    this.onSelectWeight = this.onSelectWeight.bind(this); this.onProductDescription = this.onProductDescription.bind(this); this.onProductDescriptionUnderline = this.onProductDescriptionUnderline.bind(this);
+    this.onProductDescriptionBold = this.onProductDescriptionBold.bind(this); this.onProductDescriptionItalic = this.onProductDescriptionItalic.bind(this); this.onProductDescriptionCode = this.onProductDescriptionCode.bind(this); 
   }
-  componentDidMount() { const { dispatch } = this.props;
+  componentDidMount() { const { dispatch } = this.props; this.setState({ editorShow: true });
     dispatch(fetchAllProductCategories()); dispatch(fetchAllProductPerfumes()); dispatch(fetchAllProductWeights());
     if(this.props.user && typeof this.props.user === "string") { this.setState({ user : JSON.parse(this.props.user) }); }
     if(this.props.weights && typeof this.props.weights === "string") { this.setState({ weights : typeof this.props.weights === "string" && this.props.weights.length > 2 ? JSON.parse(this.props.weights) : this.props.weights }); }
@@ -52,11 +57,21 @@ class SAdminProductNew extends Component {
   onCloseWeight() { this.setState({ weightVisible: false }); this.forceUpdate(); }
 
   onSelectCategory(event) { this.setState({ selectedCategory: event.target.value }); }
-  onSelectPerfume(event) { if((this.state.selectedPerfumes === null || this.state.selectedPerfumes.indexOf(event.target.id) === -1) && event.target.checked) { this.setState({ selectedPerfumes: [...this.state.selectedPerfumes, event.target.id]}); }
-                           else if((this.state.selectedPerfumes !== null && this.state.selectedPerfumes.indexOf(event.target.id) !== -1) && !event.target.checked) { this.state.selectedPerfumes.splice(this.state.selectedPerfumes.indexOf(event.target.id), 1); } }
-  onSelectWeight(event) {  if(this.state.selectedWeights.indexOf(event.target.id) === -1 && event.target.checked) { this.setState({ selectedWeights: [...this.state.selectedWeights, event.target.id]}); } 
-                          else if(this.state.selectedWeights.indexOf(event.target.id) !== -1 && !event.target.checked) { this.state.selectedWeights.splice(this.state.selectedWeights.indexOf(event.target.id), 1); } }
-  onInputPrice(event) { if(this.state.selectedPrices.indexOf(event.target.id) === -1) { const id = event.target.id; const prices = { id: id, price: parseFloat(event.target.value) }; console.log(prices); this.setState({ selectedPrices: [...this.state.selectedPrices.filter((element) => { return element.id != id }), prices] }); }}
+  onSelectPerfume(event) { if((this.state.selectedPerfumes === null || this.state.selectedPerfumes.indexOf(event.target.id) === -1) && event.target.checked) { this.setState({ selectedPerfumes: [...this.state.selectedPerfumes, event.target.id]}); } else if((this.state.selectedPerfumes !== null && this.state.selectedPerfumes.indexOf(event.target.id) !== -1) && !event.target.checked) { this.state.selectedPerfumes.splice(this.state.selectedPerfumes.indexOf(event.target.id), 1); } }
+  onSelectWeight(event) {  if(this.state.selectedWeights.indexOf(event.target.id) === -1 && event.target.checked) { this.setState({ selectedWeights: [...this.state.selectedWeights, event.target.id]}); } else if(this.state.selectedWeights.indexOf(event.target.id) !== -1 && !event.target.checked) { this.state.selectedWeights.splice(this.state.selectedWeights.indexOf(event.target.id), 1); } }
+  onInputPrice(event) { if(this.state.selectedPrices.indexOf(event.target.id) === -1) { const id = event.target.id; const prices = { id: id, price: parseFloat(event.target.value) }; this.setState({ selectedPrices: [...this.state.selectedPrices.filter((element) => { return element.id != id }), prices] }); }}
+
+  onProductTitle(event) { this.setState({ productTitle: event.target.value }); }
+  onProductProvider(event) { this.setState({ productProvider: event.target.value }); }
+  onProductQuantity(event) { this.setState({ productQuantity: event.target.value }); }
+
+  onProductDescription(editorState) { this.setState({ editorState: editorState }); }
+  handleKeyCommand(command) { const newState = RichUtils.handleKeyCommand(this.state.editorState, command); if(newState) { this.onProductDescription(newState); return "handled"; } return "not-handled"; }
+  onProductDescriptionBold() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD')); }
+  onProductDescriptionItalic() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));  }
+  onProductDescriptionUnderline() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));  }
+  onProductDescriptionCode() { this.onProductDescription(RichUtils.toggleCode(this.state.editorState)); }
+  onProductDescriptionStrikeThrough() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'STRIKETHROUGH')); }
 
   render() {
     return (
@@ -75,7 +90,7 @@ class SAdminProductNew extends Component {
                 </Button.Group>
               </div>
               <div className="d-flex flex-row justify-content-center row-product-specifities rows-two mt-2">
-                <div className="col-2">
+                <div className="col-3">
                   <Card interactive={true} elevation={Elevation.TWO} className="bp3-dark p-2">
                     <h5 className="box-title-white">Catégories</h5>
                     <RadioGroup onChange={this.onSelectCategory} value={this.state.selectedCategory} className="d-flex flex-column">
@@ -102,9 +117,39 @@ class SAdminProductNew extends Component {
                     </div>
                   </Card>
                 </div>
-                <div className="col-10">
+                <div className="col-9">
                   <Card interactive={true} elevation={Elevation.TWO} className=" bp3-dark">
+                  <div className="container">
+                    <div className="row d-flex flex-row justify-content-center align-items-center">
+                      <div className="col-4">
+                      </div>
+                      <div className="col-5">
+                        <InputGroup placeholder="Nom du produit" className="admin-input" onChange={this.onProductTitle} />
+                        <div className="row">
+                          <div className="col-6"><InputGroup type="number" placeholder="Quantité du produit" className="mt-2 admin-input" onChange={this.onProductQuantity} /></div>
+                          <div className="col-6"><InputGroup placeholder="Fournisseur du produit" className="mt-2 admin-input" onChange={this.onProductProvider} /></div>
+                        </div>
+                        <BPButton type="primary" className="admin-input mt-2" text={<span className="admin-input">Confirmer</span>} fill={true} />
+                      </div>
+                    </div>
+                  </div>
                   </Card>
+                    <div className="d-flex flex-column justify-content-center align-items-center mt-1">
+                      <div className="col-12 d-flex flex-column editor-description justify-content-center align-items-center mt-2 p-0">
+                        <Card interactive={false} elevation={Elevation.ONE} className="py-1 editor-container m-0">
+                        <div className="d-flex flex-row justify-content-center align-items-center">
+                          <ButtonGroup className="buttons-editor">
+                            <BPButton icon="italic" text={<span className="admin-input" className="focus-disable" onClick={this.onProductDescriptionItalic}>Italique</span>} />
+                            <BPButton icon="bold" text={<span className="admin-input" className="focus-disable" onClick={this.onProductDescriptionBold}>Gras</span>} />
+                            <BPButton icon="underline" text={<span className="admin-input" className="focus-disable" onClick={this.onProductDescriptionUnderline}>Souligner</span>} />
+                            <BPButton icon="code" text={<span className="admin-input"></span>} className="focus-disable" onClick={this.onProductDescriptionCode}>Code</BPButton>
+                            <BPButton icon="strikethrough" text={<span className="admin-input"></span>} className="focus-disable" onClick={this.onProductDescriptionStrikeThrough}>Surligner</BPButton>
+                          </ButtonGroup>
+                        </div>
+                        { this.state.editorShow ? <Editor editorState={this.state.editorState} onChange={this.onProductDescription} handleKeyCommand={this.onProductKeyCommand} /> : null }
+                        </Card>
+                      </div>
+                    </div>
                 </div>
               </div>
             </Content>

@@ -52,7 +52,7 @@ export function addProductCategory(name, description, close) {
         addProductCategoryService(name, description).then((response) => { dispatch(request()); return response; })
         .then((second) => {
             if(second.hasOwnProperty('errors')) { close(false); showWarning("Addition catégorie échoué."); dispatch(failure()); }
-            else { dispatch(fetchAllProductCategories()); dispatch(success(second.data.addProductCategoryQuery)); close(); showSuccess("Addition catégorie avec succès."); } 
+            else { dispatch(success(second.data.addProductCategoryQuery)); dispatch(fetchAllProductCategories()); close(); showSuccess("Addition catégorie avec succès."); } 
         });
     }
     function request() { return { type: productConstants.productCategoryAddRequest, categories: null }; }
@@ -65,12 +65,12 @@ export function addProductPerfume(name, description, close) {
         addProductPerfumeService(name, description).then((response) => { dispatch(request()); return response; })
         .then((second) => {
             if(second.hasOwnProperty('errors')) { close(false); showWarning("Addition catégorie échoué."); dispatch(failure()); }
-            else { dispatch(fetchAllProductPerfumes()); dispatch(success(second.data.addProductPerfumeQuery)); close(); showSuccess("Addition parfum avec succès."); } 
+            else { dispatch(success(second.data.addProductPerfumeQuery)); dispatch(fetchAllProductPerfumes()); close(); showSuccess("Addition parfum avec succès."); } 
         });
     }
-    function request() { return { type: productConstants.productCategoryAddRequest, perfumes: null }; }
-    function success(perfumes) { return { type: productConstants.productCategoryAddSuccess, perfumes: perfumes };  }
-    function failure() { return { type: productConstants.productCategoryAddFailure, perfumes: null };  }
+    function request() { return { type: productConstants.productPerfumeAddRequest, perfumes: null }; }
+    function success(perfumes) { return { type: productConstants.productPerfumeAddSuccess, perfumes: perfumes };  }
+    function failure() { return { type: productConstants.productPerfumeAddFailure, perfumes: null };  }
 }
 
 export function addProductWeight(name, value, close) {
@@ -78,10 +78,10 @@ export function addProductWeight(name, value, close) {
         addProductWeightService(name, value).then((response) => { dispatch(request()); return response; })
         .then((second) => {
             if(second.hasOwnProperty('errors')) { close(false); showWarning("Addition catégorie échoué."); dispatch(failure()); }
-            else { dispatch(fetchAllProductWeights()); dispatch(success(second.data.addProductWeightQuery)); close(); showSuccess("Addition poids avec succès."); } 
+            else { dispatch(success(second.data.addProductWeightQuery)); dispatch(fetchAllProductWeights()); close(); showSuccess("Addition poids avec succès."); } 
         });
     }
-    function request() { return { type: productConstants.productCategoryAddRequest, weights: null }; }
-    function success(weights) { return { type: productConstants.productCategoryAddSuccess, weights: weights };  }
-    function failure() { return { type: productConstants.productCategoryAddFailure, weights: null };  }
+    function request() { return { type: productConstants.productWeightAddRequest, weights: null }; }
+    function success(weights) { return { type: productConstants.productWeightAddSuccess, weights: weights };  }
+    function failure() { return { type: productConstants.productWeightAddFailure, weights: null };  }
 }

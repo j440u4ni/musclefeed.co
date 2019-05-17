@@ -1,11 +1,11 @@
 import cookie from 'js-cookie';
 import { productConstants } from '../redux-constants/product-constant';
 
-let categories = cookie.get('product-categories') !== "[]" ? cookie.get('product-categories') : null;
-let perfumes = cookie.get('product-perfumes') !== "[]" ? cookie.get('product-perfumes') : null;
-let weights = cookie.get('product-weights') !== "[]" ? cookie.get('product-weights') : null;
+let categories = cookie.get('product-categories');
+let perfumes = cookie.get('product-perfumes');
+let weights = cookie.get('product-weights');
 
-const initialState = (categories !== undefined && typeof categories !== 'undefined') && (weights !== undefined && typeof weights !== 'undefined') && (perfumes !== undefined && typeof perfumes !== 'undefined') 
+const initialState = (categories && typeof categories === 'string') && (weights && typeof weights === 'string') && (perfumes && typeof perfumes === 'string') 
 ? { categories: categories, weights: weights, perfumes: perfumes } 
 : { categories: null, weights: null, perfumes: null };
 

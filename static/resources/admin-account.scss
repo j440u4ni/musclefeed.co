@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import './fonts/Brandon\ Grotesque\ 12/style.css';
 @import '~@blueprintjs/core/lib/css/blueprint.css';
+@import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 
 .admin-login-box { position: relative; top: 35vh; }
 .input-login { font-weight: bold; }
@@ -32,4 +33,9 @@
 .box-title-white, .box-notfound-description, .checkbox-title { color: #ffffff; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
 .checkbox-title { font-family: 'Brandon Grotesque Medium', Arial, Helvetica, sans-serif; }
 .box-notfound-error { position: relative; left: 0%; }
-.box-notfound-error {}
+.admin-input { font-family: 'Brandon Grotesque Medium', Arial, Helvetica, sans-serif; font-size: 14px; }
+
+.editor-container { min-height: 50px; width: 100%; }
+.editor-buttons { width: 100%; }
+.focus-disable { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
+.focus-disable:active, .focus-disable:focus { outline: 0; outline-width: 0; outline-offset: 0; }

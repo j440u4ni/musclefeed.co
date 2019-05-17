@@ -5,5 +5,8 @@ export const productConstants = {
 
     productCategoryFetchSuccess: 'productCategoryFetchSuccess', productCategoryFetchFailure: 'productCategoryFetchFailure', productCategoryFetchRequest: 'productCategoryFetchRequest',
     productPerfumeFetchSuccess: 'productPerfumeFetchSuccess', productPerfumeFetchFailure: 'productPerfumeFetchFailure', productPerfumeFetchRequest: 'productPerfumeFetchRequest',
-    productWeightFetchSuccess: 'productWeightFetchSuccess', productWeightFetchFailure: 'productWeightFetchFailure', productWeightFetchRequest: 'productWeightFetchRequest'
+    productWeightFetchSuccess: 'productWeightFetchSuccess', productWeightFetchFailure: 'productWeightFetchFailure', productWeightFetchRequest: 'productWeightFetchRequest',
+
+    productAddRequest: 'productAddRequest', productAddSuccess: 'productAddSuccess', productAddFailure: 'productAddFailure',
+    productFetchRequest: 'productFetchRequest', productFetchSuccess: 'productFetchSuccess', productFetchFailure: 'productFetchFailure'
 };

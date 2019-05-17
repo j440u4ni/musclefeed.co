@@ -1,8 +1,8 @@
 import cookie from 'js-cookie';
 
 import { productConstants } from '../redux-constants/product-constant';
-import { addProductCategoryService, addProductPerfumeService, addProductWeightService } from '../redux-helpers/product-helper';
-import { fetchAllProductPerfumesService, fetchAllProductCategoriesService, fetchAllProductWeightsService } from '../redux-helpers/product-helper';
+import { addProductCategoryService, addProductPerfumeService, addProductWeightService, addProductService } from '../redux-helpers/product-helper';
+import { fetchAllProductPerfumesService, fetchAllProductCategoriesService, fetchAllProductWeightsService, fetchAllProductsService } from '../redux-helpers/product-helper';
 import { showWarning, showSuccess } from '../fragments-tools/alert-toasts';
 
 export function fetchAllProductCategories() {
@@ -47,6 +47,20 @@ export function fetchAllProductPerfumes() {
     function failure() { return { type: productConstants.productPerfumeFetchFailure, perfumes: null };  }
 }
 
+export function fetchAllProducts() {
+    return (dispatch) => {
+        fetchAllProductsService().then((response) => { return response; })
+        .then((second) => {
+            if(second.hasOwnProperty('errors')) { showWarning("Erreur de disposition de produits."); dispatch(failure()); }
+            else { cookie.set('products', JSON.stringify(second.data.fetchProducts)); dispatch(success(JSON.stringify(second.data.fetchProducts))); }
+        });
+    }
+    
+    function request() { return { type: productConstants.productFetchRequest, products: null }; }
+    function success(products) { return { type: productConstants.productFetchSuccess, products: products }; } 
+    function failure() { return { type: productConstants.productFetchFailure, products: null }; }
+}
+
 export function addProductCategory(name, description, close) {
     return (dispatch) => {
         addProductCategoryService(name, description).then((response) => { dispatch(request()); return response; })
@@ -84,4 +98,18 @@ export function addProductWeight(name, value, close) {
     function request() { return { type: productConstants.productWeightAddRequest, weights: null }; }
     function success(weights) { return { type: productConstants.productWeightAddSuccess, weights: weights };  }
     function failure() { return { type: productConstants.productWeightAddFailure, weights: null };  }
+}
+
+export function addProduct(title, quantity, provider, description_title, description, image, details) {
+    return (dispatch) => {
+       addProductService(title, quantity, provider, description_title, description, image, details).then((response) => { dispatch(request()); return response; })
+        .then((second) => {
+            if(second.hasOwnProperty('error')) { showWarning("Addition produit échoué."); dispatch(failure()); }
+            else { dispatch(success(second.data.addProductQuery)); showSuccess("Addition produit avec succès."); }
+        });
+    }
+
+    function request() { return { type: productConstants.productAddRequest, products: null }; }
+    function success(products) { return { type: productConstants.productAddSuccess, products: products }; } 
+    function failure() { return { type: productConstants.productAddFailure, products: null }; }
 }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Layout, Icon, Button, Empty, Radio } from 'antd';
-import { Card, Elevation, Checkbox, InputGroup, Button as BPButton, ButtonGroup } from '@blueprintjs/core';
+import { Layout, Icon, Button, Empty, Radio, Input } from 'antd';
+import { Card, Elevation, Checkbox, InputGroup, Button as BPButton, ButtonGroup, Icon as BPIcon } from '@blueprintjs/core';
 import { Editor, EditorState, RichUtils } from 'draft-js';
 
 import { GuestHeader } from '../source/components/component-header-guest';
@@ -15,9 +15,9 @@ import { SAddProductWeight } from '../source/components/component-add-weight';
 import { SAddProductCategory } from '../source/components/component-add-category';
 
 import { fetchAllProductCategories, fetchAllProductWeights, fetchAllProductPerfumes } from '../source/components/redux-actions/product-action';
+import { addProduct } from '../source/components/redux-actions/product-action';
 
 import '../static/resources/admin-account.scss';
-import UnderlineButton from 'draft-js-buttons/lib/components/UnderlineButton';
 
 const { Content, Footer } = Layout;
 const RadioGroup = Radio.Group;
@@ -26,13 +26,14 @@ class SAdminProductNew extends Component {
   constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false, selectedPrices: [], uploading: false,
                                                     categories: null, perfumes: null, weights: null, selectedCategory: 1, selectedPerfumes: [], selectedWeights: [],
                                                     productImage: '', productTitle: '', productProvider: '', productQuantity: 0, productDescription: '', editorState: EditorState.createEmpty(),
-                                                    editorShow: false
+                                                    editorShow: false, productDescriptionTitle: ''
                                                   };
-    this.onCategory = this.onCategory.bind(this); this.onPerfume = this.onPerfume.bind(this); this.onWeight = this.onWeight.bind(this); 
-    this.onCloseCategory = this.onCloseCategory.bind(this); this.onCloseWeight = this.onCloseWeight.bind(this); this.onClosePerfume = this.onClosePerfume.bind(this);
+    this.onCategory = this.onCategory.bind(this); this.onPerfume = this.onPerfume.bind(this); this.onWeight = this.onWeight.bind(this); this.onProductDescriptionTitle = this.onProductDescriptionTitle.bind(this); this.onProductTitle = this.onProductTitle.bind(this);
+    this.onCloseCategory = this.onCloseCategory.bind(this); this.onCloseWeight = this.onCloseWeight.bind(this); this.onClosePerfume = this.onClosePerfume.bind(this); this.onProductImage = this.onProductImage.bind(this); this.onProductQuantity = this.onProductQuantity.bind(this);
     this.onSelectCategory = this.onSelectCategory.bind(this); this.onSelectPerfume = this.onSelectPerfume.bind(this); this.onInputPrice = this.onInputPrice.bind(this); this.onProductDescriptionStrikeThrough = this.onProductDescriptionStrikeThrough.bind(this);
-    this.onSelectWeight = this.onSelectWeight.bind(this); this.onProductDescription = this.onProductDescription.bind(this); this.onProductDescriptionUnderline = this.onProductDescriptionUnderline.bind(this);
+    this.onSelectWeight = this.onSelectWeight.bind(this); this.onProductDescription = this.onProductDescription.bind(this); this.onProductDescriptionUnderline = this.onProductDescriptionUnderline.bind(this); this.onConfirmProduct = this.onConfirmProduct.bind(this);
     this.onProductDescriptionBold = this.onProductDescriptionBold.bind(this); this.onProductDescriptionItalic = this.onProductDescriptionItalic.bind(this); this.onProductDescriptionCode = this.onProductDescriptionCode.bind(this); 
+    this.onProductProvider = this.onProductProvider.bind(this);
   }
   componentDidMount() { const { dispatch } = this.props; this.setState({ editorShow: true });
     dispatch(fetchAllProductCategories()); dispatch(fetchAllProductPerfumes()); dispatch(fetchAllProductWeights());
@@ -66,12 +67,19 @@ class SAdminProductNew extends Component {
   onProductQuantity(event) { this.setState({ productQuantity: event.target.value }); }
 
   onProductDescription(editorState) { this.setState({ editorState: editorState }); }
-  handleKeyCommand(command) { const newState = RichUtils.handleKeyCommand(this.state.editorState, command); if(newState) { this.onProductDescription(newState); return "handled"; } return "not-handled"; }
+  onProductDescriptionTitle(event) { this.setState({ productDescriptionTitle: event.target.value }); }
+  onProductImage(event) { event.preventDefault(); const image = event.currentTarget.files[0]; this.setState({ uploading: true }); let reader = new FileReader(); const scope = this; reader.onload = function() { scope.setState({ uploading: false, productImage: reader.result }); }; reader.readAsDataURL(image); }
   onProductDescriptionBold() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD')); }
   onProductDescriptionItalic() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));  }
   onProductDescriptionUnderline() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));  }
   onProductDescriptionCode() { this.onProductDescription(RichUtils.toggleCode(this.state.editorState)); }
   onProductDescriptionStrikeThrough() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'STRIKETHROUGH')); }
+  handleKeyCommand(command) { const newState = RichUtils.handleKeyCommand(this.state.editorState, command); if(newState) { this.onProductDescription(newState); return "handled"; } return "not-handled"; }
+
+  onConfirmProduct() { const { dispatch } = this.props;
+    const details = { perfumes: this.state.selectedPerfumes, weights: this.state.selectedPrices, category: this.state.selectedCategory };
+    dispatch(addProduct(this.state.productTitle, this.state.productQuantity, this.state.productProvider, this.state.productDescriptionTitle, this.state.productDescription, this.state.productImage, details));
+  }
 
   render() {
     return (
@@ -122,14 +130,18 @@ class SAdminProductNew extends Component {
                   <div className="container">
                     <div className="row d-flex flex-row justify-content-center align-items-center">
                       <div className="col-4">
+                        <div className="product-image-preview d-flex flex-column justify-content-center align-items-center">
+                          <Icon type={ this.state.uploading ? "loading" : "cloud-upload"} className="product-image-upload-icon" iconSize={22} />
+                          <input type="file" name="product-image-file" className="product-image-file-input" onChange={this.onProductImage} /></div>
                       </div>
                       <div className="col-5">
                         <InputGroup placeholder="Nom du produit" className="admin-input" onChange={this.onProductTitle} />
+                        <InputGroup placeholder="Titre de description" className="admin-input mt-2" onChange={this.onProductDescriptionTitle} />
                         <div className="row">
                           <div className="col-6"><InputGroup type="number" placeholder="Quantité du produit" className="mt-2 admin-input" onChange={this.onProductQuantity} /></div>
                           <div className="col-6"><InputGroup placeholder="Fournisseur du produit" className="mt-2 admin-input" onChange={this.onProductProvider} /></div>
                         </div>
-                        <BPButton type="primary" className="admin-input mt-2" text={<span className="admin-input">Confirmer</span>} fill={true} />
+                        <BPButton type="primary" className="admin-input mt-2" onClick={this.onConfirmProduct} text={<span className="admin-input">Confirmer</span>} fill={true} />
                       </div>
                     </div>
                   </div>

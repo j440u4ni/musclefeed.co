@@ -39,3 +39,7 @@
 .editor-buttons { width: 100%; }
 .focus-disable { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
 .focus-disable:active, .focus-disable:focus { outline: 0; outline-width: 0; outline-offset: 0; }
+.product-image-file-input { opacity: 0; outline: none; width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; }
+.product-image-file-input:hover { cursor: pointer; }
+.product-image-upload-icon { position: relative; top: 0px; font-size: 20px; }
+.product-image-preview { cursor: pointer; border: 2px dashed #ffffff; min-width: 100%; min-height: 150px; border-radius: 5px; }

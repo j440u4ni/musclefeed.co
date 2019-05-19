@@ -5,10 +5,11 @@ let categories = cookie.get('product-categories');
 let perfumes = cookie.get('product-perfumes');
 let weights = cookie.get('product-weights');
 let products = cookie.get('products');
+let slideshow = cookie.get('slideshow');
 
-const initialState = (categories && typeof categories === 'string') && (weights && typeof weights === 'string') && (perfumes && typeof perfumes === 'string')  && (products && typeof products === 'string')
-? { categories: categories, weights: weights, perfumes: perfumes, products: products } 
-: { categories: null, weights: null, perfumes: null, products: null };
+const initialState = (categories && typeof categories === 'string') && (weights && typeof weights === 'string') && (perfumes && typeof perfumes === 'string')  && (products && typeof products === 'string') && (slideshow && typeof slideshow === 'string')
+? { categories: categories, weights: weights, perfumes: perfumes, products: products, slideshow: slideshow } 
+: { categories: null, weights: null, perfumes: null, products: null, slideshow: null };
 
 export function adminReducer(state = initialState, action) {
     switch(action.type) {
@@ -43,6 +44,22 @@ export function adminReducer(state = initialState, action) {
         case productConstants.productFetchRequest: return { ...state, products: null };
         case productConstants.productFetchSuccess: return { ...state, products: action.products };
         case productConstants.productFetchFailure: return { ...state, products: null };
+
+        case productConstants.productSlideshowAddRequest: return { ...state, slideshow: null };
+        case productConstants.productSlideshowAddSuccess: return { ...state, slideshow: action.slideshow };
+        case productConstants.productSlideshowAddFailure: return { ...state, slideshow: null };
+
+        case productConstants.productSlideshowFetchRequest: return { ...state, slideshow: null };
+        case productConstants.productSlideshowFetchSuccess: return { ...state, slideshow: action.slideshow };
+        case productConstants.productSlideshowFetchFailure: return { ...state, slideshow: null };
+
+        case productConstants.productSlideshowDeleteRequest: return { ...state };
+        case productConstants.productSlideshowDeleteSuccess: return { ...state, slideshow: action.slideshow };
+        case productConstants.productSlideshowDeleteFailure: return { ...state };
+
+        case productConstants.productDeleteRequest: return { ...state };
+        case productConstants.productDeleteRequest: return { ...state, products: action.products };
+        case productConstants.productDeleteRequest: return { ...state };
 
         default: return state;
     }

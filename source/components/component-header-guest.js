@@ -10,7 +10,7 @@ export class GuestHeader extends Component {
             <title>{this.props.title || ''}</title>
             <meta name="description" content={this.props.description || ''} />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" type="image/png" href="/static/images/logo-fredokav3@2x.png"/>
+            <link rel="icon" type="image/png" href="/static/resources/images/logo-fredokav3@2x.png"/>
         </NextHead>
     );
     }

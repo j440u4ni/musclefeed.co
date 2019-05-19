@@ -5,7 +5,7 @@ module.exports = { makeProductModel(connection) {
             id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
             title: { type: Sequelize.STRING, allowNull: false, unique: true }, description_title: { type: Sequelize.STRING, allowNull: false, unique: true },
             description: { type: Sequelize.TEXT, allowNull: false }, details: { type: Sequelize.TEXT, allowNull: false }, provider: { type: Sequelize.STRING, allowNull: false, unique: true },
-            quantity: { type: Sequelize.INTEGER, allowNull: false }, image: { type: Sequelize.TEXT, allowNull: false }
+            quantity: { type: Sequelize.INTEGER, allowNull: false }, image: { type: Sequelize.TEXT('long'), allowNull: false }
         }, { timestamps: true });
         return Product;
     } 

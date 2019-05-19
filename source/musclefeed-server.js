@@ -13,17 +13,16 @@ import { databaseConnection, personModel } from './musclefeed-models/database';
 import { accountSchema, productSchema } from './musclefeed-graphql/musclefeed-schema';
 import { saltSync, bcrypt } from './musclefeed-configuration';
 import { adminIsLogged, adminIsNotLogged } from './protected.middleware';
-import { uploadProductImage } from './musclefeed-controllers/product-functions/product-function';
 
 const render = next({ ENV });
 const handle = render.getRequestHandler();
 
 render.prepare().then(() => {
     const application = express();
-    application.use(cookieparser()); application.use(cors(corsOptions)); application.use(bodyparser.json());
+    application.use(cookieparser()); application.use(cors(corsOptions)); application.use(bodyparser.json({ limit: '10mb' }));
     application.use(bodyparser.urlencoded({ extended: true })); application.use('/v1/graphql-first-instance/BtL7NQwOt0R7psYw1Fyx', graphqlHTTP((request, response) => ({ schema: accountSchema, graphiql: true }) ));
-    application.use(bodyparser.urlencoded({ extended: true })); application.use('/v1/graphql-second-instance/0lqY5JycFu4BwCDv7vsM', graphqlHTTP((request, response) => ({ schema: productSchema, graphiql: true }) ));
-
+    application.use(bodyparser.urlencoded({ extended: true, limit: '10mb' })); application.use('/v1/graphql-second-instance/0lqY5JycFu4BwCDv7vsM', graphqlHTTP((request, response) => ({ schema: productSchema, graphiql: true }) ));
+    
     application.get('/admin-account', adminIsNotLogged, (request, response) => { const page = '/admin-account'; return handle(request, response, page); });
     application.get('/admin-dashboard', adminIsLogged, (request, response) => { const page = '/admin-dashboard'; return handle(request, response, page); });
     application.get('/admin-products', adminIsLogged, (request, response) => { const page = '/admin-products'; return handle(request, response, page); });
@@ -33,7 +32,7 @@ render.prepare().then(() => {
 
     application.get('*', (request, response, next) => { return handle(request, response, next); });
 
-    application.listen(PORT, '10.188.109.85', () => { console.log('> Listening on server : ' + PORT); }); 
+    application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
 databaseConnection.sync({ force: true }).then(() => { 

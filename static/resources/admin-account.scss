@@ -24,6 +24,7 @@
 .button-icon-header { position: relative; top: -3px; }
 
 .top-specifity { width: calc(100vw - 60px); margin-left: 60px; z-index: 2; height: 34px; }
+.top-first-specifity { width: calc(100vw - 60px); margin-left: 60px; z-index: 2; }
 .drawer-product-specifity { width: 300px; }
 .product-specifity-input { font-family: 'Brandon Grotesque Light', Arial, Helvetica, sans-serif; font-size: 12px; color: #707070; }
 .button-text { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff; }
@@ -45,3 +46,8 @@
 .product-image-preview { cursor: pointer; border: 2px dashed #ffffff; min-width: 100%; min-height: 150px; border-radius: 5px; }
 
 .admin-sider-icon { position: relative; left: -10px; }
+.image-list-box-container { height: 50px; width: 80px; background: #ffffff; border-radius: 5px; border: 1px solid #707070; &:hover { .delete-slideshow-image-button { display: inline-block; } } }
+.image-list-box { height: 40px; width: 70px; background: #ffffff; position: relative; }
+.delete-slideshow-image-button { z-index: 3; position: relative; top: -35px; left: 20px; display: none; width: 20px; height: 20px; }
+.trash-icon-slideshow { position: relative; left: 6px; top: -3px; }
+.slideshow-image-show { flex: wrap; flex-wrap: wrap; }

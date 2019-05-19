@@ -98,7 +98,7 @@ class SAdminProductNew extends Component {
                 </Button.Group>
               </div>
               <div className="d-flex flex-row justify-content-center row-product-specifities rows-two mt-2">
-                <div className="col-3">
+                <div className="col-2">
                   <Card interactive={true} elevation={Elevation.TWO} className="bp3-dark p-2">
                     <h5 className="box-title-white">Catégories</h5>
                     <RadioGroup onChange={this.onSelectCategory} value={this.state.selectedCategory} className="d-flex flex-column">
@@ -125,7 +125,7 @@ class SAdminProductNew extends Component {
                     </div>
                   </Card>
                 </div>
-                <div className="col-9">
+                <div className="col-10">
                   <Card interactive={true} elevation={Elevation.TWO} className=" bp3-dark">
                   <div className="container">
                     <div className="row d-flex flex-row justify-content-center align-items-center">
@@ -134,7 +134,7 @@ class SAdminProductNew extends Component {
                           <Icon type={ this.state.uploading ? "loading" : "cloud-upload"} className="product-image-upload-icon" iconSize={22} />
                           <input type="file" name="product-image-file" className="product-image-file-input" onChange={this.onProductImage} /></div>
                       </div>
-                      <div className="col-5">
+                      <div className="col-4">
                         <InputGroup placeholder="Nom du produit" className="admin-input" onChange={this.onProductTitle} />
                         <InputGroup placeholder="Titre de description" className="admin-input mt-2" onChange={this.onProductDescriptionTitle} />
                         <div className="row">

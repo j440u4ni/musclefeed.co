@@ -30,9 +30,12 @@ render.prepare().then(() => {
     application.get('/admin-payments', adminIsLogged, (request, response) => { const page = '/admin-payments'; return handle(request, response, page); });
     application.get('/admin-orders', adminIsLogged, (request, response) => { const page = '/admin-orders'; return handle(request, response, page); });
 
+    application.get('/user-cart', (request, response) => { const page = '/user-cart'; return handle(request, response, page); });
+    application.get('/user-account', (request, response) => { const page = '/user-account'; return handle(request, response, page); });
+    
     application.get('*', (request, response, next) => { return handle(request, response, next); });
 
-    application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
+    application.listen(PORT, '10.188.109.85', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
 databaseConnection.sync({ force: true }).then(() => { 

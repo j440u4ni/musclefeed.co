@@ -1,0 +1,9 @@
+.cart-checkout-box { width: 100%; height: 600px; max-width: 980px; }
+.cart-checkout-container { width: 100vw; height: 100vh; position: relative; top: 0px; left: 0px; }
+.label-input { font-family: 'DIN Pro Condensed Bold', Arial, Helvetica, sans-serif; font-size: 13px; color: #707070; }
+.cart-input { font-family: 'DIN Pro Medium', Arial, Helvetica, sans-serif; font-size: 12px; position: relative; top: -2px; }
+.cart-input { -webkit-box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); -moz-box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); }
+.cart-input::placeholder, .cart-select-input::placeholder, .cart-select-option { font-size: 12px; }
+.cart-select-input { width: 100%; display: block; font-family: 'DIN Pro Medium', Arial, Helvetica, sans-serif; }
+.cart-select-input { background: #ffffff; -webkit-box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); -moz-box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); }
+.label-input-facebook { font-family: 'DIN Pro Condensed Bold', Arial, Helvetica, sans-serif; font-size: 13px; color: #ffffff; }

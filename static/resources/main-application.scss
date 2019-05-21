@@ -2,10 +2,11 @@
 @import '~bootstrap/scss/bootstrap';
 @import './fonts/Brandon\ Grotesque\ 12/style.css';
 @import './fonts/DIN\ Pro/style.css';
+@import '~animate.css/animate.css';
 
+body, html { background: #F8FAFC; }
 .container-top-one { position: relative; top: 0px; left: 0px; right: 0x; width: 100vw; height: 100px; background: #001529; }
 .application-logo { height: 45px; width: 145px; position: relative; top: 0.7px; }
-.application-guest-navbar { background: #ffffff; }
 .application-button-default-style { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; position: relative; top: 10px; }
 .application-button-default-style-reset { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
 .application-button-icon-style { position: relative; top: -3px; }

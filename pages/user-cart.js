@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Input, Icon, Select, Divider } from 'antd';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { Button } from '@blueprintjs/core';
 
 import { GuestHeader } from '../source/components/component-header-guest';
@@ -48,9 +47,8 @@ class SUserCart extends Component {
                                 <div className="col-12 mt-1"><Input size="large" className="cart-input" placeholder="Tél. (+33) 7 00 00 00 00" /></div>
                                 <div className="col-12 mt-1"><Select defaultValue="France" size="large" className="cart-select-input">{ this.state.countries.map((item) => { return(<Select.Option value={item} className="cart-select-input"><span className="cart-select-option">{item}</span></Select.Option>); })}</Select></div>
                                 <div className="col-12 mt-1"><Button text={<span className="label-input-facebook">Suivant</span>} icon={<Icon type="double-right" />} intent="primary" fill={true} /></div>
-                                <div className="col-12 mt-1"><Divider><span className="label-input">Ou se connecter</span></Divider></div>
-                                <div className="col-12"><Button text={<span className="label-input">Se Connecter</span>} className="bp3-dark" fill={true} /></div>
-                                <div className="col-12 mt-1"><FacebookLogin appId="1006642666192281" autoLoad={true} fields="name,email" render={(renderProps) => (<Button intent="primary" text={<span className="label-input-facebook">Facebook</span>} icon={<Icon type="facebook" />} fill={true} />)} /></div>
+                                <div className="col-12 mt-1"><Divider><span className="label-input">Ou</span></Divider></div>
+                                <div className="col-12"><Button text={<span className="label-input">Se Connecter</span>} className="bp3-dark" fill={true} large={true} /></div>
                             </div>
                             : 
                             <div className="row">

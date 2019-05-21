@@ -12,7 +12,7 @@ const corsOptions = { origin: 'http://localhost:4000' };
 import { databaseConnection, personModel } from './musclefeed-models/database';
 import { accountSchema, productSchema } from './musclefeed-graphql/musclefeed-schema';
 import { saltSync, bcrypt } from './musclefeed-configuration';
-import { adminIsLogged, adminIsNotLogged } from './protected.middleware';
+import { adminIsLogged, adminIsNotLogged, userIsNotLogged } from './protected.middleware';
 
 const render = next({ ENV });
 const handle = render.getRequestHandler();
@@ -31,16 +31,16 @@ render.prepare().then(() => {
     application.get('/admin-orders', adminIsLogged, (request, response) => { const page = '/admin-orders'; return handle(request, response, page); });
 
     application.get('/user-cart', (request, response) => { const page = '/user-cart'; return handle(request, response, page); });
-    application.get('/user-account', (request, response) => { const page = '/user-account'; return handle(request, response, page); });
+    application.get('/user-account', userIsNotLogged, (request, response) => { const page = '/user-account'; return handle(request, response, page); });
     
     application.get('*', (request, response, next) => { return handle(request, response, next); });
 
-    application.listen(PORT, '10.188.109.85', () => { console.log('> Listening on server : ' + PORT); }); 
+    application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
 databaseConnection.sync({ force: true }).then(() => { 
     console.log('Synced database.');
-    personModel.create({ firstname: 'Oussama', lastname: 'Jaaouani', username: 'j440u4ni', email: 'j440u4ni@gmail.com', password: bcrypt.hashSync('password', saltSync), token: bcrypt.hashSync('Jaaouani Oussama'+'password'+(new Date().getTime())), civility: 'Mr', phone: '+33646018759', city: 'Valence', country: 'France', main_address: '6 rue Célestin Poncet', secondary_address: 'Etage 3 Appartement 318', is_admin: true, signup_date: (new Date().getDate()) });
-    personModel.create({ firstname: 'Abdelaziz', lastname: 'Zouheir', username: 'zouheir', email: 'indik@live.fr', password: bcrypt.hashSync('password', saltSync), token: bcrypt.hashSync('Abdelaziz Zouheir'+'password'+(new Date().getTime())), civility: 'Mr', phone: '+33766163622', city: 'Valence', country: 'France', main_address: '25 rue La Fontaine', secondary_address: 'Aucune', is_admin: true, signup_date: (new Date().getDate()) });
+    personModel.create({ firstname: 'Oussama', lastname: 'Jaaouani', username: 'jaaouani', email: 'jaaouani@musclefeed.co', password: bcrypt.hashSync('password', saltSync), token: bcrypt.hashSync('Jaaouani Oussama'+'password'+(new Date().getTime())), civility: 'Mr', phone: '+33646018759', city: 'Valence', country: 'France', main_address: '6 rue Célestin Poncet', secondary_address: 'Etage 3 Appartement 318', is_admin: true, signup_date: (new Date().getDate()) });
+    personModel.create({ firstname: 'Abdelaziz', lastname: 'Zouheir', username: 'zouheir', email: 'zouheir@musclefeed.co', password: bcrypt.hashSync('password', saltSync), token: bcrypt.hashSync('Abdelaziz Zouheir'+'password'+(new Date().getTime())), civility: 'Mr', phone: '+33766163622', city: 'Valence', country: 'France', main_address: '25 rue La Fontaine', secondary_address: 'Aucune', is_admin: true, signup_date: (new Date().getDate()) });
 });
 

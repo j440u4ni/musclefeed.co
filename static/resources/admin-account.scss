@@ -4,6 +4,7 @@
 @import '~@blueprintjs/core/lib/css/blueprint.css';
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 
+body, html { background: #F8FAFC; }
 .admin-login-box { position: relative; top: 35vh; }
 .input-login { font-weight: bold; }
 .remember-text { font-size: 12px; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; }
@@ -24,17 +25,18 @@
 .button-icon-header { position: relative; top: -3px; }
 
 .top-specifity { width: calc(100vw - 60px); margin-left: 60px; z-index: 2; height: 34px; }
-.top-first-specifity { width: calc(100vw - 60px); margin-left: 60px; z-index: 2; }
+.top-first-specifity { width: calc(100vw - 60px); margin-left: 60px; z-index: 2; background: transparent; }
 .drawer-product-specifity { width: 300px; }
 .product-specifity-input { font-family: 'Brandon Grotesque Light', Arial, Helvetica, sans-serif; font-size: 12px; color: #707070; }
 .button-text { font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff; }
 .button-drawer-fill { width: 100%; }
-.rows-two { width: calc(100vw - 60px); margin-left: 60px; height: calc(100vh - 100px); z-index: 2; background: #ffffff; }
+.rows-two { width: calc(100vw - 60px); margin-left: 60px; height: calc(100vh - 100px); z-index: 2; }
 
 .box-title-white, .box-notfound-description, .checkbox-title { color: #ffffff; font-family: 'Brandon Grotesque Bold', Arial, Helvetica, sans-serif; font-size: 12px; }
 .checkbox-title { font-family: 'Brandon Grotesque Medium', Arial, Helvetica, sans-serif; }
 .box-notfound-error { position: relative; left: 0%; }
 .admin-input { font-family: 'Brandon Grotesque Medium', Arial, Helvetica, sans-serif; font-size: 14px; }
+.input-login { background: #ffffff; -webkit-box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); -moz-box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); box-shadow: 6px 10px 23px -15px rgba(0,0,0,0.43); }
 
 .editor-container { min-height: 50px; width: 100%; }
 .editor-buttons { width: 100%; }

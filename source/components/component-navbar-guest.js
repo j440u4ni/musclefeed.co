@@ -33,8 +33,8 @@ class GuestNavbar extends Component {
                         </div>
                         <div className="col-3 d-flex flex-row justify-content-start">
                             <Button.Group>
-                                <Button type="default" className="application-button-default-style"><Icon type="user" className="application-button-icon-style" style={{ fontSize: 15 }} />&nbsp;Mon compte</Button>
-                                <Button type="default" className="application-button-default-style"><Badge dot={true} style={{ marginTop: 0, marginRight: -5 }} className="application-button-default-style-reset"><Icon type="shopping-cart" className="application-button-icon-style" style={{ fontSize: 15 }} />&nbsp;Mon panier</Badge></Button>
+                                <Link href="/user-account"><Button type="default" className="application-button-default-style"><span><Icon type="user" className="application-button-icon-style" style={{ fontSize: 15 }} />&nbsp;Mon compte</span></Button></Link>
+                                <Link href="/user-cart"><Button type="default" className="application-button-default-style"><Badge dot={true} style={{ marginTop: 0, marginRight: -5 }} className="application-button-default-style-reset"><Icon type="shopping-cart" className="application-button-icon-style" style={{ fontSize: 15 }} />&nbsp;Mon panier</Badge></Button></Link>
                             </Button.Group>
                         </div>
                     </div>

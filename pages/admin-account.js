@@ -28,7 +28,7 @@ class SAdminAccount extends Component {
         return(
             <React.Fragment>
             <GuestHeader title="Muscle Feed | Administrateur" description="Boutique en ligne de compléments alimentaires et de protéines pour la musculation à prix cassé. Le meilleur de la construction musculaire : proteines, gainer, bcaa, bruleur de graisses, booster." />
-                <div className="container">
+                <div className="container admin-account-entry">
                     <div className="row justify-content-center align-items-center py-5">
                         <div className="col-6 col-md-3 text-center col-sm-12 col-xs-12 admin-login-box">
                             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} /> } placeholder="E-mail" className="input-login" onChange={this.onChangeEmail} />

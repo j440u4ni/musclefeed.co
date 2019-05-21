@@ -3,92 +3,96 @@
   "pages": {
     "/": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/_app": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/_error": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/admin-account": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/admin-dashboard": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/admin-orders": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/admin-payments": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/admin-product-new": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/admin-products": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/index": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/user-account": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ],
     "/user-cart": [
       "static/runtime/webpack-8ed9452df514b4d17d80.js",
-      "static/css/commons.67eb8bee.chunk.css",
-      "static/chunks/commons.0240ecfd2dcaef9f381d.js",
-      "static/css/styles.d3736517.chunk.css",
-      "static/chunks/styles.3f93aeb68fc93632be65.js",
+      "static/css/commons.4f6b12ef.chunk.css",
+      "static/chunks/commons.894367c7ef8c9645e0ac.js",
+      "static/css/styles.68cc2dd4.chunk.css",
+      "static/chunks/styles.9036b276d052aa0bc466.js",
       "static/runtime/main-541f01c65744a5c2c60b.js"
     ]
   }

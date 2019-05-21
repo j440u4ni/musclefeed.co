@@ -6,9 +6,14 @@ const initialState = (user && typeof user === 'string' && user !== "undefined") 
 
 export function authenticationReducer(state = initialState, action) {
     switch(action.type) {
-        case authenticationConstants.authenticationRequest : return { logged: false, user: action.user };
-        case authenticationConstants.authenticationSuccess : return { logged: true, user: action.user };
-        case authenticationConstants.authenticationFailure : return { logged: false, user: action.user };
+        case authenticationConstants.authenticationRequest : return { ...state, logged: false, user: action.user };
+        case authenticationConstants.authenticationSuccess : return { ...state, logged: true, user: action.user };
+        case authenticationConstants.authenticationFailure : return { ...state, logged: false, user: action.user };
+
+        case authenticationConstants.registerRequest: return { ...state, logged: false };
+        case authenticationConstants.registerSuccess: return { ...state, logged: false };
+        case authenticationConstants.registerFailure: return { ...state, logged: false };
+
         default: return state;
     }
 }

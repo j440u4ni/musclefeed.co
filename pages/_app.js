@@ -13,6 +13,8 @@ import { adminReducer } from '../source/components/redux-reducers/admin-reducer'
 import { accountReducer } from '../source/components/redux-reducers/account-reducer';
 import { apolloClientGuest } from '../source/components/apollo-client/apollo-initializer';
 
+import '../static/resources/_global.scss';
+
 const reduxLogger = createLogger();
 const makeStore = () => { return createStore(combineReducers({ authenticationReducer, accountReducer, adminReducer }), applyMiddleware(thunk,  reduxLogger)); }
 

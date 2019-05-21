@@ -7,9 +7,9 @@ module.exports = { makePersonModel(connection) {
             username: { type: Sequelize.STRING, allowNull: false },                   password: { type: Sequelize.STRING, allowNull: false },
             token: { type: Sequelize.STRING, allowNull: false },                      civility: { type: Sequelize.STRING, allowNull: false  },
             phone: { type: Sequelize.STRING, allowNull: false, unique: true },        email: { type: Sequelize.STRING, allowNull: false, unique: true, validate: { isEmail: true } },
-            city: { type: Sequelize.STRING, allowNull: true },                       country:{ type:  Sequelize.STRING, allowNull: true },
-            main_address: { type: Sequelize.STRING, allowNull: true, unique: true }, secondary_address: { type: Sequelize.STRING, allowNull: true, unique: true },
-            is_admin: { type: Sequelize.BOOLEAN, allowNull: true },                  signup_date: { type: Sequelize.DATE, allowNull: true }
+            city: { type: Sequelize.STRING, allowNull: true },                        country:{ type:  Sequelize.STRING, allowNull: true },
+            main_address: { type: Sequelize.STRING, allowNull: true, unique: true },  secondary_address: { type: Sequelize.STRING, allowNull: true, unique: true },
+            is_admin: { type: Sequelize.BOOLEAN, allowNull: true },                   signup_date: { type: Sequelize.DATE, allowNull: true }
         }, { timestamps: true });
         return Person;
     } 

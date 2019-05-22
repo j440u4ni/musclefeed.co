@@ -23,24 +23,26 @@ render.prepare().then(() => {
     application.use(bodyparser.urlencoded({ extended: true })); application.use('/v1/graphql-first-instance/BtL7NQwOt0R7psYw1Fyx', graphqlHTTP((request, response) => ({ schema: accountSchema, graphiql: true }) ));
     application.use(bodyparser.urlencoded({ extended: true, limit: '10mb' })); application.use('/v1/graphql-second-instance/0lqY5JycFu4BwCDv7vsM', graphqlHTTP((request, response) => ({ schema: productSchema, graphiql: true }) ));
     
-    application.get('/admin-account', adminIsNotLogged, (request, response) => { const page = '/admin-account'; return handle(request, response, page); });
-    application.get('/admin-dashboard', adminIsLogged, (request, response) => { const page = '/admin-dashboard'; return handle(request, response, page); });
-    application.get('/admin-products', adminIsLogged, (request, response) => { const page = '/admin-products'; return handle(request, response, page); });
-    application.get('/admin-product-new', adminIsLogged, (request, response) => { const page = '/admin-product-new'; return handle(request, response, page); });
-    application.get('/admin-payments', adminIsLogged, (request, response) => { const page = '/admin-payments'; return handle(request, response, page); });
-    application.get('/admin-orders', adminIsLogged, (request, response) => { const page = '/admin-orders'; return handle(request, response, page); });
+    application.get('/admin-account', adminIsNotLogged, (request, response) => { const page = '/admin-account'; return render.render(request, response, page); });
+    application.get('/admin-dashboard', adminIsLogged, (request, response) => { const page = '/admin-dashboard'; return render.render(request, response, page); });
+    application.get('/admin-products', adminIsLogged, (request, response) => { const page = '/admin-products'; return render.render(request, response, page); });
+    application.get('/admin-product-new', adminIsLogged, (request, response) => { const page = '/admin-product-new'; return render.render(request, response, page); });
+    application.get('/admin-payments', adminIsLogged, (request, response) => { const page = '/admin-payments'; return render.render(request, response, page); });
+    application.get('/admin-orders', adminIsLogged, (request, response) => { const page = '/admin-orders'; return render.render(request, response, page); });
 
-    application.get('/user-cart', (request, response) => { const page = '/user-cart'; return handle(request, response, page); });
-    application.get('/user-account', userIsNotLogged, (request, response) => { const page = '/user-account'; return handle(request, response, page); });
-    
-    application.get('*', (request, response, next) => { return handle(request, response, next); });
+    application.get('/user-cart', (request, response) => { const page = '/user-cart'; return render.render(request, response, page); });
+    application.get('/user-account', userIsNotLogged, (request, response) => { const page = '/user-account'; return render.render(request, response, page); });
+    application.get('/products/:category', (request, response) => { const page = '/category-display'; return render.render(request, response, page, { category: request.params.category, sub: request.params.sub }); });
+    application.get('/products/:category/:sub', (request, response) => { const page = '/category-display'; return render.render(request, response, page, { category: request.params.category, sub: request.params.sub }); });
+    application.get('/product/:name', (request, response) => { const page = '/product-display'; return render.render(request, response, page, { name: request.params.name }); });
 
+    application.get('*', (request, response, next) => { return handle(request, response); });
     application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
-databaseConnection.sync({ force: true }).then(() => { 
+/* databaseConnection.sync({ force: true }).then(() => { 
     console.log('Synced database.');
     personModel.create({ firstname: 'Oussama', lastname: 'Jaaouani', username: 'jaaouani', email: 'jaaouani@musclefeed.co', password: bcrypt.hashSync('password', saltSync), token: bcrypt.hashSync('Jaaouani Oussama'+'password'+(new Date().getTime())), civility: 'Mr', phone: '+33646018759', city: 'Valence', country: 'France', main_address: '6 rue Célestin Poncet', secondary_address: 'Etage 3 Appartement 318', is_admin: true, signup_date: (new Date().getDate()) });
     personModel.create({ firstname: 'Abdelaziz', lastname: 'Zouheir', username: 'zouheir', email: 'zouheir@musclefeed.co', password: bcrypt.hashSync('password', saltSync), token: bcrypt.hashSync('Abdelaziz Zouheir'+'password'+(new Date().getTime())), civility: 'Mr', phone: '+33766163622', city: 'Valence', country: 'France', main_address: '25 rue La Fontaine', secondary_address: 'Aucune', is_admin: true, signup_date: (new Date().getDate()) });
-});
+}); */
 

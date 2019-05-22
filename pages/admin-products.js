@@ -47,7 +47,7 @@ class SAdminProducts extends Component {
           <AdminSider />
           <Layout>
             <AdminHeader user={JSON.stringify(this.state.user)} />
-            <Content className="product-global">
+            <Content className="product-global" style={{ background: '#F8FAFC' }}>
               <div className="d-flex flex-row justify-content-center top-first-specifity mt-2 mb-1">
                 <div className="col-2">
                   <Card interactive={true} className="bp3-dark p-2" elevation={Elevation.ONE}>

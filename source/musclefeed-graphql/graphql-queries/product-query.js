@@ -18,7 +18,7 @@ const ProductQuery = new GraphQLObjectType({ name: 'ProductQuery',
         fetchAllPerfumes: { type: new GraphQLList(PerfumeType), resolve(source, args, context, info) { return perfumeModel.findAll(); } },
         fetchAllWeights: { type: new GraphQLList(WeightType), resolve(source, args, context, info) { return weightModel.findAll(); } },
         fetchSlideshowImage: { type: new GraphQLList(SlideshowType), resolve(source, args, context, info) { return slideshowModel.findAll(); } },
-        fetchProducts: { type: new GraphQLList(ProductType), resolve(source, args, context, info) { return productModel.findAll(); } }
+        fetchProducts: { type: new GraphQLList(ProductType), resolve(source, args, context, info) { return productModel.findAll(); } },
     }
 });
 export { ProductQuery };

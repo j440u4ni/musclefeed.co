@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Layout, Icon, Button, Empty, Radio, Input } from 'antd';
-import { Card, Elevation, Checkbox, InputGroup, Button as BPButton, ButtonGroup, Icon as BPIcon } from '@blueprintjs/core';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Layout, Icon, Button, Empty, Select } from 'antd';
+import { Card, Elevation, Checkbox, InputGroup, Button as BPButton, ButtonGroup, Radio, RadioGroup } from '@blueprintjs/core';
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 
 import { GuestHeader } from '../source/components/component-header-guest';
 import { AdminNavbar } from '../source/components/component-navbar-admin';
@@ -19,14 +19,14 @@ import { addProduct } from '../source/components/redux-actions/product-action';
 
 import '../static/resources/admin-account.scss';
 
-const { Content, Footer } = Layout;
-const RadioGroup = Radio.Group;
+const { Content, Footer } = Layout; 
+
 
 class SAdminProductNew extends Component {
-  constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false, selectedPrices: [], uploading: false,
+  constructor(props) { super(props); this.state = { user : null, categoryVisible: false, perfumeVisible: false, weightVisible: false, selectedPrices: [], uploading: false, uploaded: false,
                                                     categories: null, perfumes: null, weights: null, selectedCategory: 1, selectedPerfumes: [], selectedWeights: [],
                                                     productImage: '', productTitle: '', productProvider: '', productQuantity: 0, productDescription: '', editorState: EditorState.createEmpty(),
-                                                    editorShow: false, productDescriptionTitle: ''
+                                                    editorShow: false, productDescriptionTitle: '',
                                                   };
     this.onCategory = this.onCategory.bind(this); this.onPerfume = this.onPerfume.bind(this); this.onWeight = this.onWeight.bind(this); this.onProductDescriptionTitle = this.onProductDescriptionTitle.bind(this); this.onProductTitle = this.onProductTitle.bind(this);
     this.onCloseCategory = this.onCloseCategory.bind(this); this.onCloseWeight = this.onCloseWeight.bind(this); this.onClosePerfume = this.onClosePerfume.bind(this); this.onProductImage = this.onProductImage.bind(this); this.onProductQuantity = this.onProductQuantity.bind(this);
@@ -57,7 +57,7 @@ class SAdminProductNew extends Component {
   onClosePerfume() { this.setState({ perfumeVisible: false }); this.forceUpdate(); }
   onCloseWeight() { this.setState({ weightVisible: false }); this.forceUpdate(); }
 
-  onSelectCategory(event) { this.setState({ selectedCategory: event.target.value }); }
+  onSelectCategory(value) { this.setState({ selectedCategory: parseInt(value) }); }
   onSelectPerfume(event) { if((this.state.selectedPerfumes === null || this.state.selectedPerfumes.indexOf(event.target.id) === -1) && event.target.checked) { this.setState({ selectedPerfumes: [...this.state.selectedPerfumes, event.target.id]}); } else if((this.state.selectedPerfumes !== null && this.state.selectedPerfumes.indexOf(event.target.id) !== -1) && !event.target.checked) { this.state.selectedPerfumes.splice(this.state.selectedPerfumes.indexOf(event.target.id), 1); } }
   onSelectWeight(event) {  if(this.state.selectedWeights.indexOf(event.target.id) === -1 && event.target.checked) { this.setState({ selectedWeights: [...this.state.selectedWeights, event.target.id]}); } else if(this.state.selectedWeights.indexOf(event.target.id) !== -1 && !event.target.checked) { this.state.selectedWeights.splice(this.state.selectedWeights.indexOf(event.target.id), 1); } }
   onInputPrice(event) { if(this.state.selectedPrices.indexOf(event.target.id) === -1) { const id = event.target.id; const prices = { id: id, price: parseFloat(event.target.value) }; this.setState({ selectedPrices: [...this.state.selectedPrices.filter((element) => { return element.id != id }), prices] }); }}
@@ -66,9 +66,9 @@ class SAdminProductNew extends Component {
   onProductProvider(event) { this.setState({ productProvider: event.target.value }); }
   onProductQuantity(event) { this.setState({ productQuantity: event.target.value }); }
 
-  onProductDescription(editorState) { this.setState({ editorState: editorState }); }
+  onProductDescription(editorState) { this.setState({ editorState: editorState, productDescription: JSON.stringify(convertToRaw(editorState.getCurrentContent())) }); }
   onProductDescriptionTitle(event) { this.setState({ productDescriptionTitle: event.target.value }); }
-  onProductImage(event) { event.preventDefault(); const image = event.currentTarget.files[0]; this.setState({ uploading: true }); let reader = new FileReader(); const scope = this; reader.onload = function() { scope.setState({ uploading: false, productImage: reader.result }); }; reader.readAsDataURL(image); }
+  onProductImage(event) { event.preventDefault(); const image = event.currentTarget.files[0]; this.setState({ uploading: true }); let reader = new FileReader(); const scope = this; reader.onload = function() { scope.setState({ uploading: false, uploaded: true, productImage: reader.result }); }; reader.readAsDataURL(image); }
   onProductDescriptionBold() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD')); }
   onProductDescriptionItalic() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));  }
   onProductDescriptionUnderline() { this.onProductDescription(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));  }
@@ -99,14 +99,7 @@ class SAdminProductNew extends Component {
               </div>
               <div className="d-flex flex-row justify-content-center row-product-specifities rows-two mt-2">
                 <div className="col-2">
-                  <Card interactive={true} elevation={Elevation.TWO} className="bp3-dark p-2">
-                    <h5 className="box-title-white">Catégories</h5>
-                    <RadioGroup onChange={this.onSelectCategory} value={this.state.selectedCategory} className="d-flex flex-column">
-                      { this.state.categories && typeof this.state.categories === "string" && this.state.categories.length <= 2 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<span className="box-notfound-description">Aucune catégorie</span>} className="box-notfound-error mt-2" /> 
-                      : this.state.categories && Array.isArray(this.state.categories) && this.state.categories.map((item) => { return(<Radio value={item.id} key={item.id}><span className="checkbox-title">{item.name}</span></Radio>); }) }
-                    </RadioGroup>
-                  </Card>
-                  <Card interactive={true} elevation={Elevation.TWO} className="mt-2 bp3-dark p-2">
+                  <Card interactive={true} elevation={Elevation.TWO} className="mt-0 bp3-dark p-2">
                     <h5 className="box-title-white">Parfums</h5>
                     { this.state.perfumes && typeof this.state.perfumes === "string" && this.state.perfumes.length <=2 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<span className="box-notfound-description">Aucun parfum</span>} className="box-notfound-error mt-2" />
                     : this.state.perfumes && Array.isArray(this.state.perfumes) && this.state.perfumes.map((item) => { return(<Checkbox key={item.id} className="checkbox-title" onChange={this.onSelectPerfume} id={item.id}>{item.name}</Checkbox>); }) }
@@ -131,7 +124,7 @@ class SAdminProductNew extends Component {
                     <div className="row d-flex flex-row justify-content-center align-items-center">
                       <div className="col-4">
                         <div className="product-image-preview d-flex flex-column justify-content-center align-items-center">
-                          <Icon type={ this.state.uploading ? "loading" : "cloud-upload"} className="product-image-upload-icon" iconSize={22} />
+                          { this.state.uploaded === false ? <Icon type={ this.state.uploading ? "loading" : "cloud-upload"} className="product-image-upload-icon" iconSize={22} /> : <img src={this.state.productImage} className="image-preview"/> }
                           <input type="file" name="product-image-file" className="product-image-file-input" onChange={this.onProductImage} /></div>
                       </div>
                       <div className="col-4">
@@ -140,6 +133,17 @@ class SAdminProductNew extends Component {
                         <div className="row">
                           <div className="col-6"><InputGroup type="number" placeholder="Quantité du produit" className="mt-2 admin-input" onChange={this.onProductQuantity} /></div>
                           <div className="col-6"><InputGroup placeholder="Fournisseur du produit" className="mt-2 admin-input" onChange={this.onProductProvider} /></div>
+                        </div>
+                        <div className="row px-3 mt-2">
+                          <Select onSelect={this.onSelectCategory} className="category-select" defaultValue={<span className="category-tree-admin-main-name">Choisir une Catégorie</span>}>
+                            { this.state.categories && Array.isArray(this.state.categories) && this.state.categories.filter((i) => { return i.parent === 0 }).map((item) => {
+                                return ( 
+                                  <Select.OptGroup label={<span className="category-tree-admin-main-name">{item.name}</span>} key={item.id}>
+                                    { item.sub.length > 0 && item.sub.map((sub) => { return (<Select.Option value={sub.id} key={sub.id}><span className="category-tree-admin-sub-name">{sub.name}</span></Select.Option>); }) }
+                                  </Select.OptGroup> 
+                                );
+                            })}
+                          </Select>
                         </div>
                         <BPButton type="primary" className="admin-input mt-2" onClick={this.onConfirmProduct} text={<span className="admin-input">Confirmer</span>} fill={true} />
                       </div>

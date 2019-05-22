@@ -19,7 +19,7 @@ import { addProductCategoryFunction, addProductPerfumeFunction,
 
 const ProductMutation = new GraphQLObjectType({ name: 'ProductMutation',
  fields: {
-    addProductCategoryQuery: { type: CategoryType, args: { name: { type: new GraphQLNonNull(GraphQLString) }, description: { type: new GraphQLNonNull(GraphQLString) } }, resolve(source, args, context, info) { return addProductCategoryFunction(args.name, args.description); } },
+    addProductCategoryQuery: { type: CategoryType, args: { name: { type: new GraphQLNonNull(GraphQLString) }, description: { type: new GraphQLNonNull(GraphQLString) }, parent: { type: new GraphQLNonNull(GraphQLInt) } }, resolve(source, args, context, info) { return addProductCategoryFunction(args.name, args.description, args.parent); } },
     addProductPerfumeQuery: { type: PerfumeType, args: { name: { type: new GraphQLNonNull(GraphQLString) }, description: { type: new GraphQLNonNull(GraphQLString) } }, resolve(source, args, context, info) { return addProductPerfumeFunction(args.name, args.description); } },
     addProductWeightQuery: { type: WeightType, args: { name: { type: new GraphQLNonNull(GraphQLString) }, value: { type: new GraphQLNonNull(GraphQLInt) } }, resolve(source, args, context, info) { return addProductWeightFunction(args.name, args.value); } },
     addProductQuery: { type: ProductType, args: { title: { type: new GraphQLNonNull(GraphQLString) }, quantity: { type: new GraphQLNonNull(GraphQLInt) }, provider: { type: new GraphQLNonNull(GraphQLString) }, description_title: { type: new GraphQLNonNull(GraphQLString) }, description: { type: new GraphQLNonNull(GraphQLString) }, image: { type: new GraphQLNonNull(GraphQLString) }, details: { type: new GraphQLNonNull(GraphQLString) } }, 

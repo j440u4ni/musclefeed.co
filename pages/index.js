@@ -25,8 +25,8 @@ class SHome extends Component {
       <React.Fragment>
         <GuestHeader title="Muscle Feed | Toutes marques de protéines pour la Musculation & nutrition sportive." description="Boutique en ligne de compléments alimentaires et de protéines pour la musculation à prix cassé. Le meilleur de la construction musculaire : proteines, gainer, bcaa, bruleur de graisses, booster." />
         <GuestNavbar className="application-guest-navbar" />
-        <div className="container container-top-three">
-          <div className="row carousel-row-homepage">
+        <div className="container-top-three">
+          <div className="row carousel-row-homepage p-0 m-0">
             <Carousel dotPosition={'bottom'} autoplay className="carousel-container-homepage">
               { this.state.slideshow && Array.isArray(this.state.slideshow) && this.state.slideshow.map((item) => {
                 return (<div key={item.id}><img src={item.image} className="carousel-image" /></div>);

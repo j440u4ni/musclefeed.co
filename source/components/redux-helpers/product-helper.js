@@ -6,8 +6,8 @@ import fetch from 'node-fetch';
 
 const hostname = 'http://10.188.37.107';
 
-export function addProductCategoryService(name, description) {
-    return fetch(hostname+':3000/v1/graphql-second-instance/0lqY5JycFu4BwCDv7vsM', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', }, body: JSON.stringify({ query: addProductCategoryQuery, variables: { name, description } }) })
+export function addProductCategoryService(name, description, parent) {
+    return fetch(hostname+':3000/v1/graphql-second-instance/0lqY5JycFu4BwCDv7vsM', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', }, body: JSON.stringify({ query: addProductCategoryQuery, variables: { name, description, parent } }) })
         .then((response) => { return response.json(); })
         .then((data) => { return data; });
 }

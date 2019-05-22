@@ -36,7 +36,11 @@
       "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/resources/guest-account.scss 0": 6,
       "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/resources/fonts/DIN Pro/style.css 0": 7,
       "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!node_modules/animate.css/animate.css 0": 8,
-      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/resources/_global.scss 0": 9
+      "css node_modules/css-loader/index.js??ref--8-1!node_modules/sass-loader/lib/loader.js??ref--8-2!static/resources/_global.scss 0": 9,
+      "ignored node_modules/readable-stream/lib util": 10,
+      "ignored node_modules/readable-stream/lib/internal/streams util": 11,
+      "ignored node_modules/bn.js/lib buffer": 12,
+      "ignored node_modules/brorand crypto": 13
     },
     "usedIds": {
       "0": 0,
@@ -48,7 +52,11 @@
       "6": 6,
       "7": 7,
       "8": 8,
-      "9": 9
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13
     }
   },
   "chunks": {

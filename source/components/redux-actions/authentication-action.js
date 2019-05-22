@@ -7,7 +7,7 @@ import { showWarning, showSuccess } from '../fragments-tools/alert-toasts';
 export function authenticate(email, password, admin, reset, router) {
     return (dispatch) => {
         authenticateService(email, password, admin).then((first) => { return first; })
-        .then((second) => { console.log(second);
+        .then((second) => {
             if(second.hasOwnProperty('errors')) { reset(); showWarning("Authentification échoué."); }
             else { 
                    if(admin === true) { cookie.set('authentication-token', second.data.retrieveAdminAccount.authenticateToken); cookie.set('authentication-user', JSON.stringify(second.data.retrieveAdminAccount)); }

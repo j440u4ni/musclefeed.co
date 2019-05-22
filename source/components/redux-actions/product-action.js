@@ -72,9 +72,9 @@ export function fetchAllSlideshowImages() {
     function failure() { return { type: productConstants.productSlideshowFetchFailure, slideshow: null }; }
 }
 
-export function addProductCategory(name, description, close) {
+export function addProductCategory(name, description, parent, close) {
     return (dispatch) => {
-        addProductCategoryService(name, description).then((response) => { dispatch(request()); return response; })
+        addProductCategoryService(name, description, parent).then((response) => { dispatch(request()); return response; })
         .then((second) => {
             if(second.hasOwnProperty('errors')) { close(false); showWarning("Addition catégorie échoué."); dispatch(failure()); }
             else { dispatch(success(second.data.addProductCategoryQuery)); dispatch(fetchAllProductCategories()); close(); showSuccess("Addition catégorie avec succès."); } 
@@ -108,7 +108,7 @@ export function addProductWeight(name, value, close) {
     function success(weights) { return { type: productConstants.productWeightAddSuccess, weights: weights };  }
     function failure() { return { type: productConstants.productWeightAddFailure, weights: null };  }
 }
-export function addProduct(title, quantity, provider, description_title, description, image, details) {
+export function addProduct(title, quantity, provider, description_title, description, image, details) { 
     return (dispatch) => {
        addProductService(title, quantity, provider, description_title, description, image, details).then((response) => { dispatch(request()); return response; })
         .then((second) => {

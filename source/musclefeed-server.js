@@ -12,7 +12,7 @@ const corsOptions = { origin: 'http://localhost:4000' };
 import { databaseConnection, personModel } from './musclefeed-models/database';
 import { accountSchema, productSchema } from './musclefeed-graphql/musclefeed-schema';
 import { saltSync, bcrypt } from './musclefeed-configuration';
-import { adminIsLogged, adminIsNotLogged, userIsNotLogged } from './protected.middleware';
+import { adminIsLogged, adminIsNotLogged, userIsNotLogged, userIsLogged } from './protected.middleware';
 
 const render = next({ ENV });
 const handle = render.getRequestHandler();
@@ -35,9 +35,10 @@ render.prepare().then(() => {
     application.get('/products/:category', (request, response) => { const page = '/category-display'; return render.render(request, response, page, { category: request.params.category, sub: request.params.sub }); });
     application.get('/products/:category/:sub', (request, response) => { const page = '/category-display'; return render.render(request, response, page, { category: request.params.category, sub: request.params.sub }); });
     application.get('/product/:name', (request, response) => { const page = '/product-display'; return render.render(request, response, page, { name: request.params.name }); });
+    application.get('/user-dashboard', userIsLogged, (request, response, next) => { const page = '/user-dashboard'; return render.render(request, response, page); });
 
     application.get('*', (request, response, next) => { return handle(request, response); });
-    application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
+    application.listen(PORT, '10.188.109.85', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
 /* databaseConnection.sync({ force: true }).then(() => { 

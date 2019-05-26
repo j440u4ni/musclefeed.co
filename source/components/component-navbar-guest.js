@@ -47,13 +47,13 @@ class GuestNavbar extends Component {
                         </div>
                     </div>
                     <div className="row d-flex flex-row justify-content-center row-guest-second">
-                        <Link href="/"><Button className="application-categories-button" type="link">><span className="d-flex flex-column p-0">Acceuil&nbsp;<span className="divider-categories"></span></span></Button></Link>
+                        <Link href="/"><Button className="application-categories-button" type="link"><span className="d-flex flex-column p-0">Acceuil<span className="divider-categories"></span></span></Button></Link>
                         { this.state.categories && Array.isArray(this.state.categories) && this.state.categories.map((item) => { if(item.parent === 0) { const url = slugify(item.name);
                             const menu = (<Menu>{item.sub.length > 0 && item.sub.map((subs) => { const sub = slugify(subs.name); return (<Menu.Item key={subs.id}><Link as={`/products/${url}/${sub}`} href={`/products?category=${url}&sub=${sub}`}><span className="sub-category-link">{subs.name}</span></Link></Menu.Item>); })}</Menu>);
                             return(<Link as={`/products/${url}/`} href={`/products?category=${url}`}>
                                     <Dropdown overlay={menu}>
-                                        <Button key={item.id} className="application-categories-button ml-2" type="link">>
-                                            <span className="d-flex flex-column p-0">{item.name}&nbsp;<span className="divider-categories"></span></span>
+                                        <Button key={item.id} className="application-categories-button ml-2" type="link">
+                                            <span className="d-flex flex-column p-0">{item.name}<span className="divider-categories"></span></span>
                                         </Button>
                                     </Dropdown>
                                 </Link>

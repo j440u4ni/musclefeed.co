@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { retrieveAccount, registerQuery } from '../apollo-client/account-apollo/authentication-query';
 import fetch from 'node-fetch';
 
-const hostname = 'http://10.188.109.85';
+const hostname = 'http://10.188.37.107';
 
 export function authenticateService(email, password, admin) {
     const authenticationQuery = retrieveAccount(admin);

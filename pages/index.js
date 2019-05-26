@@ -23,7 +23,7 @@ class SHome extends Component {
     if(previous.slideshow !== this.props.slideshow) { this.setState({ slideshow : typeof this.props.slideshow === "string" && this.props.slideshow.length > 2 ? JSON.parse(this.props.slideshow) : this.props.slideshow }); }
   }
 
-  render() {
+  render() { console.log(this.state.products);
     return(
       <React.Fragment>
         <GuestHeader title="Muscle Feed | Toutes marques de protéines pour la Musculation & nutrition sportive." description="Boutique en ligne de compléments alimentaires et de protéines pour la musculation à prix cassé. Le meilleur de la construction musculaire : proteines, gainer, bcaa, bruleur de graisses, booster." />
@@ -35,18 +35,20 @@ class SHome extends Component {
                 return (<div key={item.id}><img src={item.image} className="carousel-image" /></div>);
               })}
             </Carousel>
-            <div className="container-fluid px-2 elevation-products px-5">
+            <div className="container-fluid elevation-products px-2 d-flex flex-wrap justify-content-start">
               <Card interactive={false} elevation={Elevation.ONE} className="elevation-products-list d-flex flex-row justify-content-center">
-                { this.state.products && Array.isArray(this.state.products) && this.state.products.slice(0, 4).map((item) => {
-                  return(<div key={item.id} className="col-3 d-flex flex-row justify-content-center">
-                      <div className="col-5 p-0"><img className="product-image-home" src={item.image} /></div>
-                      <div className="col-7 d-flex flex-column">
+                { this.state.products && Array.isArray(this.state.products) && this.state.products.slice(0, 8).map((item) => {
+                  return(<div key={item.id} className="col-2 d-flex flex-column justify-content-center">
+                      <img className="product-image-home" src={item.image} />
+                      <div className="d-flex flex-column justify-content-center align-items-center">
+                        <span className="product-provider-home">{item.provider}</span>
                         <span className="product-title-home">{item.title}</span>
                         <span className="product-description-title-home mt-1">{item.description_title}</span>
-                        { this.state.description && <span className="product-description-text-home">{convertFromRaw(JSON.parse(item.description)).getPlainText().substr(0, 110)}</span> }
-                        <div className="d-flex flex-row p-0 justify-content-end">
-                          <div className="col-3"><Button type="danger" text={<Icon type="heart" className="button-home-buy" />} /></div>
-                          <div className="col-3"><Button type="default" text={<Icon type="shopping-cart" className="button-home-buy" />} /></div>
+                        { this.state.description && item.description !== "" && <span className="product-description-text-home">{convertFromRaw(JSON.parse(item.description)).getPlainText().substr(0, 140)}...</span> }
+                        <div className="d-flex flex-row p-0 justify-content-end mt-2">
+                          <div className="col-8"></div>
+                          <div className="col-3"><Button type="danger"><Icon type="heart" className="button-home-buy" /></Button></div>
+                          <div className="col-2"><Button type="primary"><Icon type="shopping-cart" className="button-home-buy ml-2" /></Button></div>
                         </div>
                       </div>
                   </div>)

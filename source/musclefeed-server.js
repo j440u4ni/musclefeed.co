@@ -38,7 +38,7 @@ render.prepare().then(() => {
     application.get('/user-dashboard', userIsLogged, (request, response, next) => { const page = '/user-dashboard'; return render.render(request, response, page); });
 
     application.get('*', (request, response, next) => { return handle(request, response); });
-    application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
+    application.listen(PORT, '10.188.109.85', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
 /* databaseConnection.sync({ force: true }).then(() => { 

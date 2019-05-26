@@ -21,8 +21,10 @@ body, html { background: #F8FAFC; }
 .divider-categories { display: none; width: 100%; border: 1px solid #707070; }
 .application-categories-button:hover, .application-categories-button:active { background: transparent; color: #707070; .divider-categories { display: block; } }
 
-.container-top-three { width: 100vw; max-height: 728px; position: relative; top: 0px; left: 0px; right: 0px; }
-.carousel-row-homepage, .carousel-row-homepage .ant-carousel { position: relative; top: 0px; width: 100vw; max-height: 728px; }
+.container-top-three { width: 100vw; min-height: 100%; }
+.carousel-row-homepage, .carousel-row-homepage .ant-carousel { position: relative; top: 0px; width: 100vw; }
+.carousel-row-homepage .ant-carousel { max-height: 728px; }
+.carousel-row-homepage { min-height: 100%; }
 .carousel-container-homepage { background: #001529; width: 100vw; color: #ffffff; max-height: 728px; }
 .carousel-image { max-height: 728px; width: 100vw; }
 .application-admin-nav-link-text { position: relative; top: 3px; }

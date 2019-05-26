@@ -43,17 +43,14 @@ class SUserAccount extends Component {
     onLoginPassword(event) { this.setState({ loginPassword: event.target.value }); }
     onCancelLogin(event) { this.setState({ loging: false }); }
 
-    onRegister(event) { this.setState({ registering: true }); const { dispatch } = this.props;
-     dispatch(register(this.state.registerCivility, this.state.registerFirstname, this.state.registerLastname, this.state.registerEmail, this.state.registerPassword, this.state.registerPhone, this.onCancel)); }
-    onLogin(event) { this.setState({ loging: true }); const { dispatch } = this.props; 
-     dispatch(authenticate(this.state.loginEmail, this.state.loginPassword, false, this.onCancelLogin, Router));
-    }
+    onRegister(event) { this.setState({ registering: true }); const { dispatch } = this.props; dispatch(register(this.state.registerCivility, this.state.registerFirstname, this.state.registerLastname, this.state.registerEmail, this.state.registerPassword, this.state.registerPhone, this.onCancel)); }
+    onLogin(event) { this.setState({ loging: true }); const { dispatch } = this.props; dispatch(authenticate(this.state.loginEmail, this.state.loginPassword, false, this.onCancelLogin, Router)); }
 
     render() {
         return(
             <React.Fragment>
                 <GuestHeader title="Muscle Feed | Mon compte" description="Boutique en ligne de compléments alimentaires et de protéines pour la musculation à prix cassé. Le meilleur de la construction musculaire : proteines, gainer, bcaa, bruleur de graisses, booster." />
-                <div className="d-flex flex-column justify-content-center account-login-container">
+                <div className="d-flex flex-column justify-content-center align-items-end account-login-container">
                     <div className="container-fluid account-login-box d-flex flex-column justify-content-center align-items-center">
                      { this.state.register === false ? 
                         <div className="col-12 p-0 account-login-form p-0 animated fadeInLeft">
@@ -90,6 +87,7 @@ class SUserAccount extends Component {
                         </div>
                     }
                     </div>
+                    <GuestFooter className="footer-special" />
                 </div>
             </React.Fragment>
         );

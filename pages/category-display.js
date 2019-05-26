@@ -5,6 +5,7 @@ import { Card, Elevation } from '@blueprintjs/core';
 import { slugify } from '../source/musclefeed-configuration';
 import { GuestHeader } from '../source/components/component-header-guest';
 import { GuestNavbar } from '../source/components/component-navbar-guest';
+import { GuestFooter } from '../source/components/component-footer-guest';
 
 import { fetchAllProductCategories, fetchAllProducts } from '../source/components/redux-actions/product-action';
 
@@ -42,15 +43,16 @@ class SCategoryDisplay extends Component {
             <React.Fragment>
                 <GuestHeader title={this.state.specified.length > 0 && typeof this.state.specified === "object" && this.state.specified !== [] ? "Muscle Feed | Catégorie " + this.state.specified[0].name : "Muscle Feed | Toutes marques de protéines pour la Musculation & nutrition sportive."} description="Boutique en ligne de compléments alimentaires et de protéines pour la musculation à prix cassé. Le meilleur de la construction musculaire : proteines, gainer, bcaa, bruleur de graisses, booster." />
                 <GuestNavbar className="application-guest-navbar" />
-                    <div className="container container-top-three d-flex flex-column justify-content-center px-5">
-                        <h5 className="product-category-title">{ typeof this.state.specified === "object" && this.state.specified.length > 0 && this.state.specified[0].name }</h5>
-                        <div className="row d-flex flex-row justify-content-center">
-                            <div className="col-3 d-flex flex-column">
-                                <Card interactive={false} elevation={Elevation.ONE} className="mt-1"></Card>
-                                <Card interactive={false} elevation={Elevation.ONE} className="mt-1"></Card>
+                    <div className="container-top-three d-flex justify-content-center">
+                        <div className="container">
+                            <h5 className="product-category-title">{ typeof this.state.specified === "object" && this.state.specified.length > 0 && this.state.specified[0].name }</h5>
+                            <div className="row d-flex flex-row justify-content-center">
+                                <div className="col-3 d-flex flex-column"> <Card interactive={false} elevation={Elevation.ONE} className="mt-1">
+                                </Card></div>
+                                <div className="col-9"></div>
                             </div>
-                            <div className="col-9"></div>
                         </div>
+                        <GuestFooter />
                     </div>
             </React.Fragment>
         );

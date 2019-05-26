@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 
 import { Input, Icon, Select, Divider } from 'antd';
 import { Button } from '@blueprintjs/core';
@@ -28,7 +29,7 @@ class SUserCart extends Component {
         return(
             <React.Fragment>
                 <GuestHeader title="Muscle Feed | Mon panier" description="Boutique en ligne de compléments alimentaires et de protéines pour la musculation à prix cassé. Le meilleur de la construction musculaire : proteines, gainer, bcaa, bruleur de graisses, booster." />
-                <div className="d-flex flex-column justify-content-center cart-checkout-container">
+                <div className="d-flex flex-column justify-content-center align-items-end cart-checkout-container">
                     <div className="container cart-checkout-box d-flex flex-row">
                         <div className="col-8 p-0 cart-checkout-products p-1">
                             { this.state.products ? 
@@ -48,7 +49,7 @@ class SUserCart extends Component {
                                 <div className="col-12 mt-1"><Select defaultValue="France" size="large" className="cart-select-input">{ this.state.countries.map((item) => { return(<Select.Option value={item} className="cart-select-input"><span className="cart-select-option">{item}</span></Select.Option>); })}</Select></div>
                                 <div className="col-12 mt-1"><Button text={<span className="label-input-facebook">Suivant</span>} icon={<Icon type="double-right" />} intent="primary" fill={true} /></div>
                                 <div className="col-12 mt-1"><Divider><span className="label-input">Ou</span></Divider></div>
-                                <div className="col-12"><Button text={<span className="label-input">Se Connecter</span>} className="bp3-dark" fill={true} large={true} /></div>
+                                <div className="col-12"><Link href="/user-account"><Button text={<span className="label-input">Se Connecter</span>} className="bp3-dark" fill={true} large={true} /></Link></div>
                             </div>
                             : 
                             <div className="row">
@@ -57,6 +58,7 @@ class SUserCart extends Component {
                             }
                         </div>
                     </div>
+                    <GuestFooter className="footer-special" />
                 </div>
             </React.Fragment>
         );

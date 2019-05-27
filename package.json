@@ -2,14 +2,14 @@
   "name": "musclefeed-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "source/index.js",
   "scripts": {
     "start": "NODE_ENV=production nodemon --exec babel-node ./source/musclefeed-server.js",
     "build": "next build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jaaouani Oussama",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.4.4",

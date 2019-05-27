@@ -7,7 +7,7 @@ import cookieparser from 'cookie-parser';
 
 const PORT = process.env.PORT || 3000;
 const ENV = process.env.NODE_ENV || false;
-const corsOptions = { origin: 'http://localhost:4000' };
+const corsOptions = { origin: 'http://10.188.37.107:3000' };
 
 import { databaseConnection, personModel } from './musclefeed-models/database';
 import { accountSchema, productSchema } from './musclefeed-graphql/musclefeed-schema';
@@ -38,7 +38,7 @@ render.prepare().then(() => {
     application.get('/user-dashboard', userIsLogged, (request, response, next) => { const page = '/user-dashboard'; return render.render(request, response, page); });
 
     application.get('*', (request, response, next) => { return handle(request, response); });
-    application.listen(PORT, '10.188.109.85', () => { console.log('> Listening on server : ' + PORT); }); 
+    application.listen(PORT, '10.188.37.107', () => { console.log('> Listening on server : ' + PORT); }); 
 });
 
 /* databaseConnection.sync({ force: true }).then(() => { 

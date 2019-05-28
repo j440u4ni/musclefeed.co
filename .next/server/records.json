@@ -18,7 +18,9 @@
       "multi private-next-pages/products/category-display.js": 13,
       "multi private-next-pages/products/product-display.js": 14,
       "multi private-next-pages/category-display.js": 13,
-      "multi private-next-pages/product-display.js": 14
+      "multi private-next-pages/product-display.js": 14,
+      "multi private-next-pages/user-orders.js": 15,
+      "multi private-next-pages/user-settings.js": 16
     },
     "usedIds": {
       "0": 0,
@@ -35,7 +37,9 @@
       "11": 11,
       "12": 12,
       "13": 13,
-      "14": 14
+      "14": 14,
+      "15": 15,
+      "16": 16
     }
   },
   "chunks": {

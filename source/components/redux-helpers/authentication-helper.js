@@ -15,7 +15,7 @@ export function authenticateService(email, password, admin) {
 export function logoutService(admin) {
     cookie.remove('authentication-token');
     cookie.remove('authentication-user');
-    admin ? Router.push('/admin-account') : Router.push('/');
+    admin ? Router.push('/admin-account') : Router.push('/user-account');
 }
 
 export function registerService(civility, firstname, lastname, email, password, phone) {

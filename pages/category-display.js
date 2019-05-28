@@ -43,7 +43,7 @@ class SCategoryDisplay extends Component {
             <React.Fragment>
                 <GuestHeader title={this.state.specified.length > 0 && typeof this.state.specified === "object" && this.state.specified !== [] ? "Muscle Feed | Catégorie " + this.state.specified[0].name : "Muscle Feed | Toutes marques de protéines pour la Musculation & nutrition sportive."} description="Boutique en ligne de compléments alimentaires et de protéines pour la musculation à prix cassé. Le meilleur de la construction musculaire : proteines, gainer, bcaa, bruleur de graisses, booster." />
                 <GuestNavbar className="application-guest-navbar" />
-                    <div className="container-top-three d-flex justify-content-center">
+                    <div className="container-top-three d-flex flex-column justify-content-center">
                         <div className="container">
                             <h5 className="product-category-title">{ typeof this.state.specified === "object" && this.state.specified.length > 0 && this.state.specified[0].name }</h5>
                             <div className="row d-flex flex-row justify-content-center">

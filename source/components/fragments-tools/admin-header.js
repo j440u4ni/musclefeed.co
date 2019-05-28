@@ -12,7 +12,7 @@ export class AdminHeader extends Component {
   constructor(props) { super(props); this.state = { user : null }; this.onLogOut = this.onLogOut.bind(this); }
   componentDidMount() { if(this.props.hasOwnProperty('user') && typeof this.props.user === "string") { this.setState({ user : JSON.parse(this.props.user) }); } }
   componentDidUpdate(previous) { if(this.props.hasOwnProperty('user') && previous.user !== this.props.user) { this.setState({ user : JSON.parse(this.props.user) }); } }
-  onLogOut() { console.log('sure ?'); confirm({ title: 'Voulez-vous vraiment vous déconnecter ?', content: 'Souhaitez-vous vous déconnecter ?', onOk() { logoutService(true); }, onCancel() {}, }); }
+  onLogOut() { confirm({ title: 'Voulez-vous vraiment vous déconnecter ?', content: 'Souhaitez-vous vous déconnecter ?', onOk() { logoutService(true); }, onCancel() {}, }); }
 
   render() {
     return (
